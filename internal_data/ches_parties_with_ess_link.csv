@@ -1,0 +1,381 @@
+link_code,name_short.x,name_english.x,auth_liberal,cat_auth_liberal,pop_plural,cat_pop_plural,econ_lr,cat_econ_lr,vote_pct_2014,seat_pct_2014,partyfacts_id,dataset_party_id,dataset_key
+AL_6_1,PSS,Socialist Party of Albania,NA,NA,NA,NA,NA,NA,NA,NA,1729,4101,ches
+AL_6_10,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,2568,NA,NA
+AL_6_2,PDS,Democratic Party of Albania,NA,NA,NA,NA,NA,NA,NA,NA,190,4105,ches
+AL_6_3,LSI,Socialist Movement for Integration,NA,NA,NA,NA,NA,NA,NA,NA,2297,4102,ches
+AL_6_4,PRS,Republican Party of Albania,NA,NA,NA,NA,NA,NA,NA,NA,819,4106,ches
+AL_6_6,PDIU,"Party for Justice, Integration and Unity",NA,NA,NA,NA,NA,NA,NA,NA,3270,4107,ches
+AL_6_7,PBDN,Unity for Human Rights Party,NA,NA,NA,NA,NA,NA,NA,NA,1636,4103,ches
+AL_6_8,FRD,New Democratic Spirit,NA,NA,NA,NA,NA,NA,NA,NA,3697,NA,NA
+AL_6_9,AK,Red and Black Alliance,NA,NA,NA,NA,NA,NA,NA,NA,8354,NA,NA
+AT_7_1,SPO,Social Democratic Party of Austria,41,Lib,25,Pluralist,22,Left,26.8,28.4,1384,1301,ches
+AT_7_10,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1857,NA,NA
+AT_7_2,OVP,Austrian People's Party,71,Lib,20,Pluralist,62,Right,24,25.7,1329,1302,ches
+AT_7_3,FPO,Freedom Party of Austria,87,Auth,67,Populist,53,Right,20.5,21.9,463,1303,ches
+AT_7_4,BZO,Alliance for the Future of Austria,77,Lib,59,Populist,71,Right,3.5,0,599,1307,ches
+AT_7_5,GRUENE,The Greens -- The Green Alternative,18,Lib,66,Populist,28,Left,12.4,13.1,1659,1304,ches
+AT_7_6,KPO,Communist Party of Austria,NA,NA,NA,NA,NA,NA,NA,NA,996,NA,NA
+AT_7_7,NEOS,NEOS – The New Austria,NA,NA,NA,NA,NA,NA,NA,NA,1970,NA,NA
+AT_7_8,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2591,NA,NA
+AT_7_9,TS,Team Stronach,74,Lib,79,Populist,86,Right,5.7,6,1971,1310,ches
+BE_5_1,AGL-Gr,Agalev -- Green,15,Lib,47,Pluralist,23,Left,5.3,4,528,105,ches
+BE_5_10,Ecolo,Confederated ecologists for the organisation of original struggles,15,Lib,47,Pluralist,20,Left,3.3,4,1563,104,ches
+BE_5_11,FN,National Front,NA,NA,NA,NA,NA,NA,NA,NA,191,115,ches
+BE_5_12,MR,Reformist Movement,46,Lib,24,Pluralist,77,Right,9.6,13.3,789,106,ches
+BE_5_13,PS,Socialist Party [Francophone],26,Lib,25,Pluralist,21,Left,11.7,15.3,500,102,ches
+BE_5_14,PVDA – PTB,Workers' Party of Belgium,23,Lib,73,Populist,3,Left,3.7,1.3,1753,119,ches
+BE_5_16,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1834,114,ches
+BE_5_2,CD&V,Christian Democrats and Flemish,57,Lib,26,Pluralist,56,Right,11.6,12,604,109,ches
+BE_5_3,N-VA,New Flemish Alliance,72,Lib,53,Populist,85,Right,20.3,22,36,110,ches
+BE_5_4,LD/LDD,"List Dedecker / Libertarian, Direct, Democratic",NA,NA,NA,NA,NA,NA,NA,NA,43,117,ches
+BE_5_5,SPA,Socialist Party Differently,25,Lib,29,Pluralist,25,Left,8.8,8.7,1680,103,ches
+BE_5_6,PVDA – PTB,Workers' Party of Belgium,23,Lib,73,Populist,3,Left,3.7,1.3,1753,119,ches
+BE_5_7,VB,Vlaams Belang,86,Auth,75,Populist,54,Right,NA,NA,553,NA,NA
+BE_5_8,PVV-OVLD,Party of Liberty and Progress -- Open Flemish Liberals and Democrats,46,Lib,24,Pluralist,79,Right,9.8,9.3,49,107,ches
+BE_5_9,CDH,Humanist Democratic Centre,NA,NA,NA,NA,NA,NA,NA,NA,2338,NA,NA
+BG_5_1,BSP,Bulgarian Socialist Party,NA,NA,NA,NA,NA,NA,NA,NA,757,NA,NA
+BG_5_10,IMRO,IMRO -- Bulgarian National Movement,NA,NA,NA,NA,NA,NA,NA,NA,2056,NA,NA
+BG_5_11,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2635,2019,ches
+BG_5_13,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2635,2019,ches
+BG_5_2,GERB,Citizens for European Development of Bulgaria,57,Lib,58,Populist,69,Right,32.7,35,760,2010,ches
+BG_5_3,ATA,National Union Attack,96,Auth,83,Populist,14,Left,4.5,4.6,1793,2007,ches
+BG_5_4,NDSV,National Movement (Simeon II) for Stability and Progress,NA,NA,NA,NA,NA,NA,NA,NA,374,2001,ches
+BG_5_5,DPS,Movement for Rights and Freedoms,54,Lib,37,Pluralist,45,Left,14.8,15.8,982,2004,ches
+BG_5_6,DSB,Democrats for a Strong Bulgaria,47,Lib,63,Populist,82,Right,3.5,3.8,1195,2008,ches
+BG_5_7,ABV,Alternative for Bulgarian Revival,59,Lib,61,Populist,35,Left,4.2,4.6,3187,2016,ches
+BG_5_8,SDS,Union of Democratic Forces,NA,NA,NA,NA,NA,NA,NA,NA,482,NA,NA
+CH_5_10,NA-SD,National Action / Swiss Democrats,NA,NA,NA,NA,NA,NA,NA,NA,1819,NA,NA
+CH_5_11,EDU,Federal Democratic Union of Switzerland,86,Auth,36,Pluralist,55,Right,1.2,0,631,3608,ches
+CH_5_12,EVP,Protestant Peoples Party,68,Lib,26,Pluralist,45,Left,1.9,1,1123,3607,ches
+CH_5_13,LdT,Ticino League,80,Auth,43,Pluralist,48,Left,1,1,1661,3610,ches
+CH_5_14,FDP,FDP.The Liberals,54,Lib,20,Pluralist,79,Right,16.4,16.5,1231,3603,ches
+CH_5_15,BDP,Conservative Democratic Party of Switzerland,66,Lib,22,Pluralist,66,Right,4.1,3.5,1415,3612,ches
+CH_5_2,KK/CVP,Catholic Conservative / Christian Democratic Peoples Party,66,Lib,20,Pluralist,53,Right,11.6,13.5,1808,3604,ches
+CH_5_20,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1964,NA,NA
+CH_5_3,SP,Social Democratic Party of Switzerland,21,Lib,27,Pluralist,19,Left,18.8,21.5,29,3602,ches
+CH_5_4,SVP,Swiss People's Party,89,Auth,49,Pluralist,76,Right,29.4,32.5,308,3601,ches
+CH_5_6,CsP,Christian Social Party,53,Lib,20,Pluralist,41,Left,0.2,0,1122,3611,ches
+CH_5_7,PdA,Swiss Party of Labour,NA,NA,NA,NA,NA,NA,NA,NA,669,NA,NA
+CH_5_8,Grue,Green Party,17,Lib,25,Pluralist,24,Left,7.1,5.5,1006,3605,ches
+CH_5_9,GPL,Green Liberal Party,31,Lib,25,Pluralist,67,Right,4.6,3.5,1759,3606,ches
+CY_5_1,AKEL,Progressive Party of Working People,33,Lib,71,Populist,26,Left,32.7,33.9,1076,4003,ches
+CY_5_2,DIKO,Democratic Party,67,Lib,56,Populist,65,Right,15.8,16.1,635,4004,ches
+CY_5_3,DISY,Democratic Rally,60,Lib,56,Populist,83,Right,34.3,35.7,563,4001,ches
+CY_5_4,EK,European Party,74,Lib,61,Populist,74,Right,3.9,3.6,1817,4002,ches
+CY_5_5,KOP,Ecological and Environmental Movement,52,Lib,77,Populist,48,Left,2.2,1.8,858,4006,ches
+CY_5_6,ED,United Democrats,NA,NA,NA,NA,NA,NA,NA,NA,321,NA,NA
+CY_5_7,EDEK,Movement for Social Democracy EDEK,58,Lib,71,Populist,48,Left,8.9,8.9,1028,4005,ches
+CY_5_8,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1837,NA,NA
+CZ_5_1,KSCM,Communist Party of Bohemia and Moravia,64,Lib,57,Populist,12,Left,14.9,16.5,1728,2103,ches
+CZ_5_2,CSSD,Czech Social Democratic Party,47,Lib,34,Pluralist,32,Left,20.5,25,177,2101,ches
+CZ_5_3,SZ,Green Party,18,Lib,66,Populist,43,Left,3.2,0,1554,2107,ches
+CZ_5_4,KDU/CSL,Christian Democratic Union / People's Party,75,Lib,41,Pluralist,51,Right,6.8,7,676,2104,ches
+CZ_5_5,TOP09,Tradition Responsibility Prosperity 09,53,Lib,36,Pluralist,79,Right,12,10.5,223,2109,ches
+CZ_5_6,VV,Public Affairs,NA,NA,NA,NA,NA,NA,NA,NA,1202,2110,ches
+CZ_5_7,ODS,Civic Democratic Party,67,Lib,27,Pluralist,82,Right,7.7,8,466,2102,ches
+CZ_5_8,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1838,NA,NA
+DE_5_1,SPD,Social Democratic Party of Germany,41,Lib,22,Pluralist,36,Left,25.7,30.6,383,302,ches
+DE_5_2,CDU/CSU,Christian Democrat Union/Christian Social Union,70.5,Lib,20.5,Pluralist,61.5,Right,NA,NA,NA,NA,NA
+DE_5_3,B90/Gr,Alliance 90 / Greens,22,Lib,33,Pluralist,33,Left,8.4,10,1816,304,ches
+DE_5_4,FDP,Free Democratic Party,40,Lib,22,Pluralist,77,Right,4.8,0,573,303,ches
+DE_5_5,Linke,The Left,39,Lib,44,Pluralist,11,Left,8.6,10.1,1545,306,ches
+DE_5_6,Rep,The Republicans,NA,NA,NA,NA,NA,NA,NA,NA,720,305,ches
+DE_5_7,NPD,National Democratic Party of Germany,92,Auth,62,Populist,44,Left,NA,NA,NA,NA,NA
+DE_5_8,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1895,NA,NA
+DK_5_1,SD,Social Democrats,48,Lib,26,Pluralist,38,Left,24.5,24.6,379,201,ches
+DK_5_10,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1858,NA,NA
+DK_5_2,RV,Danish Social-Liberal Party / Radical Liberal Party,25,Lib,17,Pluralist,58,Right,9.4,9.5,1507,202,ches
+DK_5_3,KF,Conservative People's Party,70,Lib,24,Pluralist,71,Right,4.9,4.5,536,203,ches
+DK_5_4,SF,Socialist Peoples Party,28,Lib,27,Pluralist,21,Left,9.1,8.9,329,206,ches
+DK_5_5,DF,Danish Peoples Party,83,Auth,48,Pluralist,44,Left,12.2,12.3,1022,215,ches
+DK_5_6,KrF/KD,Christian People's Party / Christian Democrats,NA,NA,NA,NA,NA,NA,NA,NA,53,210,ches
+DK_5_7,V,Liberal Party,67,Lib,25,Pluralist,73,Right,26.4,26.3,1204,211,ches
+DK_5_8,LA,[New] Liberal Alliance,42,Lib,27,Pluralist,92,Right,4.9,5,212,218,ches
+DK_5_9,Enh,Red-Green Alliance,17,Lib,47,Pluralist,7,Left,6.6,6.7,1527,213,ches
+EE_5_1,IRL,Union of Pro Patria and Res Publica,NA,NA,NA,NA,NA,NA,NA,NA,685,NA,NA
+EE_5_2,EK,Estonian Centre Party,48,Lib,41,Pluralist,36,Left,23.3,25.7,533,2202,ches
+EE_5_3,ER,Estonian Reform Party,48,Lib,31,Pluralist,84,Right,28.6,32.7,821,2203,ches
+EE_5_4,ERL,People's Union of Estonia,NA,NA,NA,NA,NA,NA,NA,NA,110,2206,ches
+EE_5_5,SDE-M,Social Democratic Party -- Moderates,36,Lib,47,Pluralist,43,Left,17.1,18.8,1150,2204,ches
+EE_5_6,EER,Estonian Greens,44,Lib,78,Populist,54,Right,3.8,0,1040,2207,ches
+EE_5_7,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1840,NA,NA
+EE_5_8,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2679,NA,NA
+EE_5_9,EKD,Estonian Christian Democrats,NA,NA,NA,NA,NA,NA,NA,NA,790,NA,NA
+ES_5_1,AP/PP,People's Alliance-Party / People's Party,80,Auth,25,Pluralist,79,Right,41.9,53.1,441,502,ches
+ES_5_10,UPyD,"Union, Progress and Democracy",44,Lib,75,Populist,50,Right,4.8,1.4,55,523,ches
+ES_5_2,PSOE,Spanish Socialist Workers Party,36,Lib,47,Pluralist,29,Left,28.8,31.4,1338,501,ches
+ES_5_3,IU,United Left,24,Lib,67,Populist,11,Left,5,2.3,247,504,ches
+ES_5_4,CiU,Convergence and Unity,70,Lib,27,Pluralist,69,Right,4.2,4.6,139,505,ches
+ES_5_5,ERC,Republican Left of Catalonia,43,Lib,45,Pluralist,31,Left,1.1,0.9,848,511,ches
+ES_5_6,PNV,Basque Nationalist Party,62,Lib,27,Pluralist,60,Right,1.4,1.4,1637,506,ches
+ES_5_7,BNG,Galician Nationalist Block,37,Lib,57,Populist,19,Left,0.8,0.6,1011,513,ches
+ES_5_74,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1839,NA,NA
+ES_5_8,AUN,Agreement of Nationalist Unity,NA,NA,NA,NA,NA,NA,NA,NA,8262,NA,NA
+ES_5_9,NaBai,Navarre Yes,NA,NA,NA,NA,NA,NA,NA,NA,611,NA,NA
+FI_5_1,KOK,National Coalition Party,55,Lib,20,Pluralist,77,Right,20.4,22,495,1402,ches
+FI_5_13,VIHR,Green League,15,Lib,46,Pluralist,48,Left,7.3,5,479,1408,ches
+FI_5_14,SDP,Social Democratic Party of Finland,42,Lib,29,Pluralist,39,Left,19.1,21,1303,1401,ches
+FI_5_15,VAS,Left Alliance,27,Lib,51,Populist,19,Left,8.1,7,1044,1404,ches
+FI_5_16,SKP,Communist Party of Finland,NA,NA,NA,NA,NA,NA,NA,NA,7030,NA,NA
+FI_5_17,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2687,1411,ches
+FI_5_18,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2687,1411,ches
+FI_5_19,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1859,NA,NA
+FI_5_2,RKP/SFP,Swedish People's Party of Finland,34,Lib,24,Pluralist,71,Right,4.3,4.5,1229,1406,ches
+FI_5_3,L,Liberal People's Party,NA,NA,NA,NA,NA,NA,NA,NA,249,NA,NA
+FI_5_4,KESK,Agrarian Union / Centre Party,70,Lib,36,Pluralist,58,Right,15.8,17.5,901,1403,ches
+FI_5_5,SP/P,Finns Party / True Finns,90,Auth,81,Populist,40,Left,19.1,19.5,1689,1405,ches
+FI_5_6,KD,Christian Democrats / League,77,Lib,32,Pluralist,54,Right,4,3,703,1409,ches
+FI_5_9,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2687,1411,ches
+FR_5_1,FN / RN,National Front / National Rally,88,Auth,89,Populist,47,Left,13.6,0.3,433,610,ches
+FR_5_10,EELV,Europe Ecology - The Greens,NA,NA,NA,NA,NA,NA,NA,NA,5650,NA,NA
+FR_5_10,EELV,Europe Ecology - The Greens,17,Lib,58,Populist,23,Left,NA,NA,NA,NA,NA
+FR_5_15,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1898,NA,NA
+FR_5_2,LO,Workers' Struggle,NA,NA,NA,NA,NA,NA,NA,NA,617,NA,NA
+FR_5_3,MoDem,Democratic Movement,60,Lib,52,Populist,67,Right,1.8,0.3,496,613,ches
+FR_5_4,NC,New Centre,64,Lib,32,Pluralist,69,Right,2.2,2.1,1255,621,ches
+FR_5_5,NPA,New Anticapitalist Party,NA,NA,NA,NA,NA,NA,NA,NA,6684,NA,NA
+FR_5_6,PCF,French Communist Party,39,Lib,55,Populist,8,Left,4.8,1.2,1251,601,ches
+FR_5_7,PRG,Radical Party of the Left,NA,NA,NA,NA,NA,NA,NA,NA,1783,NA,NA
+FR_5_7,PRG,Radical Party of the Left,41,Lib,37,Pluralist,35,Left,NA,NA,14,NA,NA
+FR_5_8,PS,Socialist Party,40,Lib,35,Pluralist,39,Left,29.4,48.5,1478,602,ches
+FR_5_9,UMP,Union for a Popular Movement,76,Lib,33,Pluralist,74,Right,27.1,33.6,1595,609,ches
+GB_5_1,Con,Conservatives,71,Lib,27,Pluralist,79,Right,36.1,47.2,1567,1101,ches
+GB_5_2,Lab,Labour,43,Lib,39,Pluralist,40,Left,29,39.7,1516,1102,ches
+GB_5_3,LD,Liberal Democrats,33,Lib,34,Pluralist,51,Right,23,8.8,1388,1104,ches
+GB_5_4,SNP,Scottish National Party,43,Lib,57,Populist,34,Left,1.7,0.9,986,1105,ches
+GB_5_5,Plaid,Plaid Cymru – the Party of Wales,35,Lib,50,Populist,36,Left,0.6,0.5,1002,1106,ches
+GB_5_6,GP,Green Party of England and Wales,18,Lib,65,Populist,19,Left,1,0.2,1794,1107,ches
+GB_5_7,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1841,NA,NA
+GR_5_1,PASOK,Panhellenic Socialist Movement,48,Lib,39,Pluralist,49,Left,12.3,11,1468,401,ches
+GR_5_10,tech,technical,NA,NA,NA,NA,NA,NA,NA,NA,3029,NA,NA
+GR_5_11,tech,technical,NA,NA,NA,NA,NA,NA,NA,NA,3029,NA,NA
+GR_5_12,LS/CA,People’s Association / Golden Dawn,100,Auth,91,Populist,18,Left,6.9,6,1660,415,ches
+GR_5_13,D-FS,Action -- Liberal Alliance,NA,NA,NA,NA,NA,NA,NA,NA,1130,NA,NA
+GR_5_2,ND,New Democracy,82,Auth,35,Pluralist,63,Right,29.7,43,794,402,ches
+GR_5_3,KKE,Communist Party of Greece,NA,NA,NA,NA,NA,NA,NA,NA,48,404,ches
+GR_5_3,KKE,Communist Party of Greece,48,Lib,94,Populist,4,Left,NA,NA,48,NA,NA
+GR_5_4,LAOS,Popular Orthodox Rally,93,Auth,76,Populist,51,Right,1.6,0,965,410,ches
+GR_5_5,SYRIZA,Coalition of the Radical Left,25,Lib,84,Populist,14,Left,26.9,23.7,301,403,ches
+GR_5_6,OP,Ecologist Greens,NA,NA,NA,NA,NA,NA,NA,NA,378,411,ches
+GR_5_7,DISY,Democratic Alliance,NA,NA,NA,NA,NA,NA,NA,NA,1284,NA,NA
+GR_5_8,DIMAR,Democratic Left,27,Lib,60,Populist,32,Left,6.3,5.7,1160,414,ches
+HR_5_1,HDZ,Croatian Democratic Union,80,Auth,39,Pluralist,62,Right,21.9,27.2,1431,3101,ches
+HR_5_10,HSU,Croatian Party of Pensioners,NA,NA,NA,NA,NA,NA,NA,NA,2062,3108,ches
+HR_5_11,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,2027,NA,NA
+HR_5_2,SDP,Social Democratic Party of Croatia,31,Lib,41,Pluralist,50,Right,31.3,40.4,1475,3102,ches
+HR_5_3,HNS,Croatian People's Party – Liberal Democrats,26,Lib,35,Pluralist,69,Right,6.7,8.6,799,3105,ches
+HR_5_4,HSS,Croatian Peasant Party,86,Auth,43,Pluralist,44,Left,0.6,0.7,72,3103,ches
+HR_5_5,HSLS,Croatian Social Liberal Party,44,Lib,46,Pluralist,77,Right,3,0,214,3104,ches
+HR_5_6,IDS,Istrian Democratic Assembly,26,Lib,36,Pluralist,56,Right,1.5,2,513,3106,ches
+HR_5_7,HDSSB,Croatian Democratic Alliance of Slavonia and Baranja,86,Auth,61,Populist,46,Left,3,4,2347,3107,ches
+HR_5_8,SDSS,Independent Democratic Serb Party,NA,NA,NA,NA,NA,NA,NA,NA,2348,3110,ches
+HR_5_9,HSP,Croatian Party of Rights,92,Auth,65,Populist,49,Left,3,0,253,3109,ches
+HU_5_1,Fidesz,Alliance of Hungarian Solidarity,87,Auth,39,Pluralist,45,Left,NA,NA,1691,NA,NA
+HU_5_11,Jobbik,Movement for a Better Hungary,95,Auth,87,Populist,31,Left,20.2,11.6,42,2308,ches
+HU_5_12,MSzDP,Social Democratic Party of Hungary (1989),NA,NA,NA,NA,NA,NA,NA,NA,1726,NA,NA
+HU_5_13,LMP,Politics Can Be Different,28,Lib,82,Populist,35,Left,5.3,2.5,1650,2309,ches
+HU_5_2,MDF,Hungarian Democratic Forum,NA,NA,NA,NA,NA,NA,NA,NA,1697,2303,ches
+HU_5_4,MSZP,Hungarian Socialist Party,43,Lib,47,Pluralist,44,Left,20.6,14.6,1408,2301,ches
+HU_5_5,MM,Hungarian Communist Workers' Party,NA,NA,NA,NA,NA,NA,NA,NA,859,NA,NA
+HU_5_6,SzDSz,Alliance of Free Democrats,NA,NA,NA,NA,NA,NA,NA,NA,910,2304,ches
+HU_5_8,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2721,2313,ches
+HU_5_86,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1843,NA,NA
+HU_5_9,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2721,2313,ches
+IE_5_1,FF,Fianna Fail – The Republican Party,71,Lib,30,Pluralist,58,Right,17.5,11.5,1055,701,ches
+IE_5_10,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1885,NA,NA
+IE_5_2,FG,Fine Gael (Familiy of the Irish),67,Lib,27,Pluralist,66,Right,36.1,46.1,1288,702,ches
+IE_5_3,Greens,Green Party,30,Lib,52,Populist,36,Left,1.9,0,1775,705,ches
+IE_5_4,indep,independent,NA,NA,NA,NA,NA,NA,NA,NA,2735,NA,NA
+IE_5_5,Lab,Labour Party,44,Lib,29,Pluralist,44,Left,19.5,22.4,562,703,ches
+IE_5_6,PBPA,People Before Profit Alliance,26,Lib,66,Populist,9,Left,1,1.2,242,709,ches
+IE_5_7,SF,Sinn Fein (Provisional),48,Lib,60,Populist,23,Left,9.9,8.5,4,707,ches
+IE_5_8,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2737,NA,NA
+IE_5_9,ULA,United Left Alliance,NA,NA,NA,NA,NA,NA,NA,NA,1978,NA,NA
+IL_5_1,Labor,Israeli Labor Party,NA,NA,NA,NA,NA,NA,NA,NA,1436,NA,NA
+IL_5_10,HH,National Union,NA,NA,NA,NA,NA,NA,NA,NA,953,NA,NA
+IL_5_11,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2740,NA,NA
+IL_5_12,AlYa,Green Leaf,NA,NA,NA,NA,NA,NA,NA,NA,3129,NA,NA
+IL_5_13,HY,The Greens,NA,NA,NA,NA,NA,NA,NA,NA,3700,NA,NA
+IL_5_14,Hadash,The Democratic Front for Peace and Equality,NA,NA,NA,NA,NA,NA,NA,NA,421,NA,NA
+IL_5_15,Balad,National Democratic Assembly,NA,NA,NA,NA,NA,NA,NA,NA,1663,NA,NA
+IL_5_16,RT,Ra'am-Ta'al,NA,NA,NA,NA,NA,NA,NA,NA,1047,NA,NA
+IL_5_17,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,2541,NA,NA
+IL_5_2,L,Likud-National Liberal Movement,NA,NA,NA,NA,NA,NA,NA,NA,1036,NA,NA
+IL_5_3,Kadima,Forward,NA,NA,NA,NA,NA,NA,NA,NA,484,NA,NA
+IL_5_4,SHAS,Sephardi Torah Guardians,NA,NA,NA,NA,NA,NA,NA,NA,455,NA,NA
+IL_5_5,Meretz,Energy,NA,NA,NA,NA,NA,NA,NA,NA,3131,NA,NA
+IL_5_6,HH,Jewish Home,NA,NA,NA,NA,NA,NA,NA,NA,3677,NA,NA
+IL_5_7,YH,United Torah Judaism,NA,NA,NA,NA,NA,NA,NA,NA,1075,NA,NA
+IL_5_8,Dor/Gil,Dor / Generation who Built the Land,NA,NA,NA,NA,NA,NA,NA,NA,1648,NA,NA
+IL_5_9,YB,Israel is Our Home,NA,NA,NA,NA,NA,NA,NA,NA,235,NA,NA
+IS_6_1,Sam,Social Democratic Alliance,NA,NA,NA,NA,NA,NA,NA,NA,1396,4505,ches
+IS_6_10,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2724,NA,NA
+IS_6_11,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1844,NA,NA
+IS_6_2,F,Progressive Party,NA,NA,NA,NA,NA,NA,NA,NA,964,4503,ches
+IS_6_3,Sj,Independence Party,NA,NA,NA,NA,NA,NA,NA,NA,363,4501,ches
+IS_6_4,Graen,Left-Green Movement,NA,NA,NA,NA,NA,NA,NA,NA,457,4502,ches
+IS_6_6,B,Citizens' Movement,NA,NA,NA,NA,NA,NA,NA,NA,224,NA,NA
+IS_6_8,BF,Bright Future,NA,NA,NA,NA,NA,NA,NA,NA,2517,NA,NA
+IS_6_9,unknown,unknown,NA,NA,NA,NA,NA,NA,NA,NA,2723,NA,NA
+IT_6_1,PD,Democratic Party,37,Lib,58,Populist,47,Left,25.4,47.3,802,837,ches
+IT_6_10,FdI,Brothers of Italy,91,Auth,62,Populist,49,Left,2,1.5,2280,844,ches
+IT_6_11,RI,Italian Radicals,NA,NA,NA,NA,NA,NA,NA,NA,8248,NA,NA
+IT_6_12,FiD,Stop the Decline,NA,NA,NA,NA,NA,NA,NA,NA,2279,NA,NA
+IT_6_13,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2415,852,ches
+IT_6_13,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2415,851,ches
+IT_6_13,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2415,842,ches
+IT_6_14,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1896,NA,NA
+IT_6_2,SI,Italian Left,20,Lib,71,Populist,11,Left,3.2,6,1212,838,ches
+IT_6_2,SI,Italian Left,NA,NA,NA,NA,NA,NA,NA,NA,1212,850,ches
+IT_6_3,RC,Civil Revolution,NA,NA,NA,NA,NA,NA,NA,NA,2277,NA,NA
+IT_6_4,M5S,Five Star Movement,39,Lib,100,Populist,40,Left,25.6,17.5,2046,845,ches
+IT_6_5,SC,Civic Choice,55,Lib,41,Pluralist,82,Right,8.3,6,2281,846,ches
+IT_6_6,UdC,Union of the Centre,NA,NA,NA,NA,NA,NA,NA,NA,201,NA,NA
+IT_6_8,IPdL,The People of Freedom,NA,NA,NA,NA,NA,NA,NA,NA,365,NA,NA
+IT_6_9,LN,North League,86,Auth,78,Populist,64,Right,4.1,2.9,1221,811,ches
+LT_5_1,LSDP,Lithuanian Social Democratic Party,46,Lib,34,Pluralist,32,Left,18.4,26.2,64,2501,ches
+LT_5_10,DP,Labour Party,55,Lib,42,Pluralist,48,Left,19.8,20.6,102,2516,ches
+LT_5_12,LRLS,Liberals' Movement of the Republic of Lithuania,35,Lib,41,Pluralist,86,Right,8.6,7.1,1744,2518,ches
+LT_5_13,LVŽS / LVLS,Lithuanian Farmers and Greens Union / Lithuanian Peasant Popular Union,NA,NA,NA,NA,NA,NA,NA,NA,1490,NA,NA
+LT_5_14,TT-LDP,Order and Justice – Liberal Democratic Party,78,Lib,71,Populist,39,Left,7.3,7.8,237,2515,ches
+LT_5_15,LiCS,Liberal and Centre Union,NA,NA,NA,NA,NA,NA,NA,NA,1193,NA,NA
+LT_5_16,JL,Young Lithuania,NA,NA,NA,NA,NA,NA,NA,NA,1026,2513,ches
+LT_5_17,LSDS,Lithuanian Social Democratic Union,NA,NA,NA,NA,NA,NA,NA,NA,8258,NA,NA
+LT_5_19,UTL,"Liaudies sąjunga ""Uz teisingą Lietuvą""",NA,NA,NA,NA,NA,NA,NA,NA,1409,NA,NA
+LT_5_2,LRS,Lithuanian Russian Union,NA,NA,NA,NA,NA,NA,NA,NA,168,2503,ches
+LT_5_20,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1846,NA,NA
+LT_5_3,F/SLF,Front Party / Socialist People's Front,NA,NA,NA,NA,NA,NA,NA,NA,1250,2519,ches
+LT_5_4,LCP,Lithuanian Centre Party,NA,NA,NA,NA,NA,NA,NA,NA,5455,2521,ches
+LT_5_5,TS-LKD,Homeland Union / Homeland Union – Lithuanian Christian Democrats,69,Lib,44,Pluralist,53,Right,15.1,23.4,193,2506,ches
+LT_5_6,NS,New Union (Social Liberals),NA,NA,NA,NA,NA,NA,NA,NA,1800,2504,ches
+LT_5_7,PDP,Civic Democratic Party,NA,NA,NA,NA,NA,NA,NA,NA,105,NA,NA
+LT_5_8,LLRA,Election Action of Lithuania's Poles,70,Lib,54,Populist,40,Left,5.8,5.7,556,2511,ches
+LT_5_9,TPP,National Resurrection Party,NA,NA,NA,NA,NA,NA,NA,NA,347,2517,ches
+NL_5_1,VVD,People's Party for Freedom and Democracy,59,Lib,16,Pluralist,83,Right,26.6,27.3,828,1003,ches
+NL_5_10,PvdD,Party for the Animals,29,Lib,37,Pluralist,23,Left,1.9,1.3,1467,1018,ches
+NL_5_12,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1850,NA,NA
+NL_5_2,PvdA,Labour,40,Lib,14,Pluralist,41,Left,24.8,25.3,1234,1002,ches
+NL_5_3,PVV,Party for Freedom,82,Auth,74,Populist,51,Right,10.1,10,298,1017,ches
+NL_5_4,CDA,Christian Democratic Appeal,69,Lib,14,Pluralist,67,Right,8.5,8.7,1157,1001,ches
+NL_5_5,SP,Socialist Party,46,Lib,51,Populist,13,Left,9.7,10,1363,1014,ches
+NL_5_6,D66,Democrats 66,21,Lib,16,Pluralist,64,Right,8,8,45,1004,ches
+NL_5_7,GL,GreenLeft,17,Lib,18,Pluralist,32,Left,2.3,2.7,1537,1005,ches
+NL_5_8,CU,ChristianUnion,65,Lib,18,Pluralist,45,Left,3.1,3.3,1459,1016,ches
+NL_5_9,SGP,Reformed Political Party,89,Auth,11,0,63,Right,2.1,2,1178,1006,ches
+NO_5_1,DT,Red Party,NA,NA,NA,NA,NA,NA,NA,NA,3698,NA,NA
+NO_5_10,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1886,NA,NA
+NO_5_2,SV,Socialist Left Party,32,Lib,36,Pluralist,33,Left,4.1,4.1,719,3504,ches
+NO_5_3,DNA,Norwegian Labour Party,48,Lib,12,Pluralist,43,Left,30.8,32.5,448,3501,ches
+NO_5_4,V,Liberal Party of Norway,39,Lib,20,Pluralist,62,Right,5.2,5.3,1173,3507,ches
+NO_5_5,KrF,Christian Democratic Party,63,Lib,20,Pluralist,53,Right,5.6,5.9,705,3506,ches
+NO_5_6,Sp/Bp,Centre [Agrarian] Party,63,Lib,26,Pluralist,43,Left,5.5,5.9,1072,3505,ches
+NO_5_7,H,Conservative Party,60,Lib,12,Pluralist,69,Right,26.8,28.4,503,3503,ches
+NO_5_8,FrP,Progress Party,81,Auth,39,Pluralist,67,Right,16.3,17.1,101,3502,ches
+PL_5_10,SLD,Democratic Left Alliance,35,Lib,36,Pluralist,32,Left,8.2,5.9,57,2601,ches
+PL_5_12,UPR,Real Politics Union,NA,NA,NA,NA,NA,NA,NA,NA,283,NA,NA
+PL_5_14,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1852,NA,NA
+PL_5_2,KPEiR,National Party of Retirees and Pensioners,NA,NA,NA,NA,NA,NA,NA,NA,391,NA,NA
+PL_5_3,PO,Civic Platform,47,Lib,30,Pluralist,62,Right,39.2,45,1117,2603,ches
+PL_5_4,PD,Democratic Party,NA,NA,NA,NA,NA,NA,NA,NA,1566,2609,ches
+PL_5_5,PSL,Polish People's (Peasants') Party,71,Lib,31,Pluralist,37,Left,8.4,6.1,602,2606,ches
+PL_5_6,PR,Republic Right Party,NA,NA,NA,NA,NA,NA,NA,NA,876,NA,NA
+PL_5_7,PiS,Law and Justice,83,Auth,83,Populist,33,Left,29.9,34.1,1565,2605,ches
+PL_5_8,SRP,Self-Defense of the Republic Poland,NA,NA,NA,NA,NA,NA,NA,NA,727,2604,ches
+PL_5_9,SDPL,Social Democracy of Poland,NA,NA,NA,NA,NA,NA,NA,NA,1328,2611,ches
+PT_5_1,BE,Left Bloc,15,Lib,79,Populist,10,Left,5.4,3.5,1310,1208,ches
+PT_5_10,PPD/PSD,Popular Democratic Party / Social Democratic Party,61,Lib,27,Pluralist,75,Right,40.3,47,1359,1206,ches
+PT_5_11,PS,Socialist Party,42,Lib,38,Pluralist,39,Left,29.2,32.2,655,1205,ches
+PT_5_12,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1853,NA,NA
+PT_5_2,CDS/PP,Democratic and Social Center / People's Party,75,Lib,26,Pluralist,68,Right,12.2,10.4,1308,1202,ches
+PT_5_3,CDU,Unitary Democratic Coalition,35,Lib,78,Populist,7,Left,8.2,7,284,1201,ches
+PT_5_4,PCTP/MRPP,Communist Party of the Portuguese Workers / Reorganizative Movement of the Party of the Proletariat,NA,NA,NA,NA,NA,NA,NA,NA,857,NA,NA
+PT_5_6,PH,Humanist Party,NA,NA,NA,NA,NA,NA,NA,NA,8269,NA,NA
+PT_5_8,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2893,NA,NA
+RS_9_1,BDZS / SPP,Bosniak Democratic Union of Sandžak / Justice and Reconciliation Party,NA,NA,NA,NA,NA,NA,NA,NA,3173,NA,NA
+RS_9_10,LSV,League of Social Democrats of Vojvodina,NA,NA,NA,NA,NA,NA,NA,NA,4769,3314,ches
+RS_9_12,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2915,NA,NA
+RS_9_13,PUPS,Party of United Pensioners of Serbia,NA,NA,NA,NA,NA,NA,NA,NA,2179,3312,ches
+RS_9_14,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2915,NA,NA
+RS_9_15,PSS-BK,Strength of Serbia Movement – BK,NA,NA,NA,NA,NA,NA,NA,NA,5483,NA,NA
+RS_9_16,PSG,Movement of Free Citizens,NA,NA,NA,NA,NA,NA,NA,NA,8364,NA,NA
+RS_9_18,SVM,Alliance of Vojvodina Hungarians,NA,NA,NA,NA,NA,NA,NA,NA,2203,NA,NA
+RS_9_19,SDPS,Social Democratic Party of Serbia,NA,NA,NA,NA,NA,NA,NA,NA,4771,3311,ches
+RS_9_2,DS,Democratic Party,NA,NA,NA,NA,NA,NA,NA,NA,2189,3302,ches
+RS_9_20,SDS,Social Democratic Party,NA,NA,NA,NA,NA,NA,NA,NA,4770,3313,ches
+RS_9_21,SPS,Socialist Party of Serbia,NA,NA,NA,NA,NA,NA,NA,NA,2178,3307,ches
+RS_9_22,SNS,Serbian Progressive Party,NA,NA,NA,NA,NA,NA,NA,NA,3177,3310,ches
+RS_9_23,SRS,Serbian Radical Party,NA,NA,NA,NA,NA,NA,NA,NA,2175,NA,NA
+RS_9_24,SPO,Serbian Renewal Movement,NA,NA,NA,NA,NA,NA,NA,NA,2176,NA,NA
+RS_9_25,SDAS,Party of Democratic Action of Sandžak,NA,NA,NA,NA,NA,NA,NA,NA,3176,NA,NA
+RS_9_26,ZS,Green Party,NA,NA,NA,NA,NA,NA,NA,NA,8365,NA,NA
+RS_9_27,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,2911,NA,NA
+RS_9_3,DSS,Democratic Party of Serbia,NA,NA,NA,NA,NA,NA,NA,NA,2190,3303,ches
+RS_9_4,DSHV,Democratic Alliance of Croats in Vojvodina,NA,NA,NA,NA,NA,NA,NA,NA,3174,NA,NA
+RS_9_5,DJB,Enough is Enough - Restart,NA,NA,NA,NA,NA,NA,NA,NA,7648,NA,NA
+RS_9_6,Dveri,Serbian Movement Dveri,NA,NA,NA,NA,NA,NA,NA,NA,5665,3315,ches
+RS_9_7,JS,United Serbia,NA,NA,NA,NA,NA,NA,NA,NA,6625,NA,NA
+RS_9_8,LS,Serbian Left,NA,NA,NA,NA,NA,NA,NA,NA,8363,NA,NA
+RS_9_9,LDP,Liberal Democratic Party,NA,NA,NA,NA,NA,NA,NA,NA,2196,3308,ches
+RU_5_1,YR,United Russia,NA,NA,NA,NA,NA,NA,NA,NA,2256,NA,NA
+RU_5_11,SR,Just Russia,NA,NA,NA,NA,NA,NA,NA,NA,2244,NA,NA
+RU_5_12,PoG,Party of Growth,NA,NA,NA,NA,NA,NA,NA,NA,6739,NA,NA
+RU_5_13,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2900,NA,NA
+RU_5_14,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2900,NA,NA
+RU_5_16,PR,Patriots of Russia,NA,NA,NA,NA,NA,NA,NA,NA,8362,NA,NA
+RU_5_2,KPRF,Communist Party ot the Russian Federation,NA,NA,NA,NA,NA,NA,NA,NA,2236,NA,NA
+RU_5_3,LDPR,Liberal Democratic Party of Russia,NA,NA,NA,NA,NA,NA,NA,NA,2245,NA,NA
+RU_5_6,Yabloko,"Russian United Democratic Party ""Yabloko""",NA,NA,NA,NA,NA,NA,NA,NA,2252,NA,NA
+RU_5_7,APR,Agrarian Party of Russia,NA,NA,NA,NA,NA,NA,NA,NA,2235,NA,NA
+SE_5_1,B/C,Farmers' League / Centre Party,36,Lib,20,Pluralist,74,Right,6.1,6.3,199,1603,ches
+SE_5_10,SD,Sweden Democrats,92,Auth,60,Populist,48,Left,12.9,14,409,1610,ches
+SE_5_11,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1887,NA,NA
+SE_5_2,Fpl / L,Liberal People's Party / The Liberals,35,Lib,19,Pluralist,71,Right,5.4,5.4,1274,1604,ches
+SE_5_3,KD,Christian Democrats,57,Lib,20,Pluralist,68,Right,4.6,4.6,651,1606,ches
+SE_5_4,MP,Greens,15,Lib,29,Pluralist,35,Left,6.9,7.2,456,1607,ches
+SE_5_5,AV / H / HP / M,General Electoral League / The Right / Right Wing Party / Moderate Party,44,Lib,18,Pluralist,74,Right,23.3,24.1,690,1605,ches
+SE_5_6,S,Social Democrats / Social Democratic Workers' Party of Sweden,34,Lib,20,Pluralist,32,Left,31,32.4,487,1602,ches
+SE_5_7,V,Left Party / Communist Party,17,Lib,38,Pluralist,7,Left,5.7,6,830,1601,ches
+SE_5_8,Fi,Feminist Initiative,12,Lib,50,Populist,14,Left,3.1,0,1240,1612,ches
+SI_5_1,DeSUS,Democratic Party of Retired People of Slovenia,50,Lib,55,Populist,42,Left,10.2,11.1,467,2906,ches
+SI_5_10,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1856,NA,NA
+SI_5_2,LDS,Liberal Democracy of Slovenia,NA,NA,NA,NA,NA,NA,NA,NA,975,2901,ches
+SI_5_4,NSi,New Slovenia -- Christian People's Party,82,Auth,69,Populist,82,Right,5.6,5.6,1618,2905,ches
+SI_5_5,SDS,Slovenian Democratic Party,82,Auth,69,Populist,81,Right,20.7,23.3,472,2902,ches
+SI_5_6,SLS,Slovenian People's Party,71,Lib,61,Populist,64,Right,4,0,764,2904,ches
+SI_5_7,SNS,Slovenian National Party,NA,NA,NA,NA,NA,NA,NA,NA,96,2907,ches
+SI_5_8,SD/ZLSD,Social Democrats / United List of Social Democrats,34,Lib,59,Populist,36,Left,6,6.7,1403,2903,ches
+SI_5_9,Zares,For Real,NA,NA,NA,NA,NA,NA,NA,NA,474,2910,ches
+SK_5_1,SNS,Slovak National Party,96,Auth,60,Populist,49,Left,4.6,0,730,2809,ches
+SK_5_2,SDKU-DS,Slovak Democratic and Christian Union – Democratic Party,52,Lib,50,Populist,77,Right,6.1,7.3,1617,2802,ches
+SK_5_3,Smer – SD,Direction – Social Democracy,70,Lib,38,Pluralist,24,Left,44.4,55.3,311,2803,ches
+SK_5_4,MH,Most-Hid,51,Lib,50,Populist,62,Right,6.9,8.7,258,2813,ches
+SK_5_5,KDH,Christian Democratic Movement,84,Auth,49,Pluralist,55,Right,8.8,10.7,63,2805,ches
+SK_5_6,SaS,Freedom and Solidarity,40,Lib,66,Populist,92,Right,5.9,7.3,1386,2812,ches
+SK_5_7,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,1855,NA,NA
+UA_5_1,LB,Lytvyn Bloc,NA,NA,NA,NA,NA,NA,NA,NA,2230,NA,NA
+UA_5_10,SU,Strong Ukraine,NA,NA,NA,NA,NA,NA,NA,NA,3178,4409,ches
+UA_5_11,1-perc,1 percent,NA,NA,NA,NA,NA,NA,NA,NA,2963,NA,NA
+UA_5_12,PSPU,Progressive Socialist Party of the Ukraine,NA,NA,NA,NA,NA,NA,NA,NA,2208,NA,NA
+UA_5_13,SPU,Socialist Party of the Ukraine,NA,NA,NA,NA,NA,NA,NA,NA,2211,NA,NA
+UA_5_14,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,2959,NA,NA
+UA_5_2,BYuT,Yulia Tymoshenko Bloc,NA,NA,NA,NA,NA,NA,NA,NA,2228,NA,NA
+UA_5_3,NUNS,Our Ukraine – People's Self-Defense Bloc,NA,NA,NA,NA,NA,NA,NA,NA,2231,NA,NA
+UA_5_4,Fre,"All Ukrainian Union ""Freedom"" / Svoboda",NA,NA,NA,NA,NA,NA,NA,NA,3267,4407,ches
+UA_5_5,KPU,Communist Party of Ukraine,NA,NA,NA,NA,NA,NA,NA,NA,2220,4408,ches
+UA_5_6,PR,Party of Regions,NA,NA,NA,NA,NA,NA,NA,NA,2234,NA,NA
+UA_5_7,UDAR-VK,Ukrainian Democratic Alliance for Reform,NA,NA,NA,NA,NA,NA,NA,NA,5825,NA,NA
+UA_5_8,GP,Civic Position (Anatolii Grytsenko),NA,NA,NA,NA,NA,NA,NA,NA,4780,4410,ches
+UA_5_9,OU,Our Ukraine,NA,NA,NA,NA,NA,NA,NA,NA,8366,NA,NA
+XK_6_1,LDK,Democratic League of Kosovo,NA,NA,NA,NA,NA,NA,NA,NA,2295,4202,ches
+XK_6_10,DSS,Democratic Party of Serbia,NA,NA,NA,NA,NA,NA,NA,NA,8273,NA,NA
+XK_6_11,SPS,Socialist Party of Serbia,NA,NA,NA,NA,NA,NA,NA,NA,8276,NA,NA
+XK_6_12,LDP,Liberal Democratic Party,NA,NA,NA,NA,NA,NA,NA,NA,8275,NA,NA
+XK_6_13,SLS,Serbian Liberal Party,NA,NA,NA,NA,NA,NA,NA,NA,8277,NA,NA
+XK_6_2,PDK,Democratic Party of Kosovo,NA,NA,NA,NA,NA,NA,NA,NA,2294,4201,ches
+XK_6_3,VV!,Self-determination,NA,NA,NA,NA,NA,NA,NA,NA,2296,4203,ches
+XK_6_4,AAK,Alliance for the Future of Kosovo,NA,NA,NA,NA,NA,NA,NA,NA,3243,4204,ches
+XK_6_5,PD,Justice Party,NA,NA,NA,NA,NA,NA,NA,NA,5497,NA,NA
+XK_6_6,AKR,New Kosovo Alliance,NA,NA,NA,NA,NA,NA,NA,NA,3703,4207,ches
+XK_6_7,etc,other,NA,NA,NA,NA,NA,NA,NA,NA,2761,NA,NA
+XK_6_8,SNS,Serbian Progressive Party,NA,NA,NA,NA,NA,NA,NA,NA,8278,NA,NA
+XK_6_9,DS,Democratic Party,NA,NA,NA,NA,NA,NA,NA,NA,8274,NA,NA

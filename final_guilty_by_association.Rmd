@@ -1,0 +1,996 @@
+---
+title: "Guilty by Association: Populists, Nationalists, and Immigration"
+author: "A. Matthew Eichinger"
+output: 
+  pdf_document:
+    number_sections: TRUE
+    latex_engine: xelatex
+header-includes:
+  - \usepackage{istgame}
+  - \usepackage{setspace}\onehalfspacing
+  - \usepackage{graphicx}
+  - \usepackage{float}
+  - \usepackage{amsmath}
+  - \usepackage{dcolumn}
+  - \usepackage{rotating}
+  - \usepackage[font={small}]{caption}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhead[LE,RO]{EICHINGER}
+  - \fancyhead[CE,CO]{}
+  - \fancyhead[RE,LO]{\leftmark}
+  - \fancyfoot[LO,LE]{}
+  - \fancyfoot[RO,RE]{}
+  - \fancyfoot[CO,CE]{\thepage}
+bibliography: mendeley_guilty_by_association.bib
+nocite: '@*'
+link-citations: TRUE
+linkcolor: blue
+suppress-bibliography: FALSE
+lang: en-US
+fontsize: 12pt
+geometry: margin = 1.5in
+indent: TRUE
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, eval = FALSE, message = FALSE,
+  error = FALSE, warning = FALSE, cache = TRUE,
+  fig.width = 6, fig.height = 4, fig.align = "center")
+
+
+# load libraries
+library(tidyverse)
+library(ggpubr)
+library(MatchIt)
+library(cobalt)
+library(countrycode)
+library(lmtest)
+library(WeightIt)
+library(cobalt)
+library(broom)
+library(marginaleffects)
+library(stargazer)
+library(sf)
+
+setwd("C:/Users/eichi/Downloads/guilty_by_association_paper_copy")
+
+# load data
+load("linear_model_results.RData")
+
+# load tables
+load("final_guilty_by_association_descriptives.RData")
+
+# load models
+load("final_matching_models.RData")
+
+```
+
+
+\begin{abstract}
+\noindent A pernicious stereotype that emerged from the recent surge in "populism" is that populist voters are prejudiced against immigrants. While this could be true, there are a number of conceptual, theoretical, and empirical problems with the claim. I address what I see as shortcomings of the populism and globalization literature in how it conceptually defines populism and far right nationalism, how it fails to distinguish their theoretical differences in terms of voter behavior, and how it fails to distinguish them in empirical research. After proving my points, I test the extent to which party choice is a reliable signal of preferences over immigration restrictions. I show that when populism is decomposed into its different political subclassifications, the populist and far right nationalist survey participants exhibit very different behaviors. For example, far right nationalist voters do not respond to the treatment of occupational exposures, while mainstream and populist voters do. I take this to mean that, like mainstream voters, populist voters are not anti-immigration at baseline. By contrast, far right nationalist voters are. I conclude by discussing the theoretical, empirical, and conceptual implications of the results.
+\end{abstract}
+
+
+# Introduction
+
+What does it mean that "globalization causes populism?" Throughout the 2010s, political scientists established that exposure to globalization, whether in the form of import competition, risk of having your job offshored, or immigration, is associated with higher levels of support for protectionism and populist political parties (Hainmueller and Hiscox [-@Hainmueller2007]; Mansfield and Mutz [-@Mansfield2013]; see Rodrik [-@Rodrik2021] for a survey of research). This echoed a broader trend in news media that argued that the downfall of manufacturing industries is what was responsible for the Brexit movement, the rise of Donald Trump, and the success of parties like Alternative for Deutschland in Germany, the National Front in France, the Five Star Movement in Italy, the Golden Dawn in Greece, and plenty other extreme parties. But none of these movements are really describable as "populist" in nature. Although they satisfy Mudde's [-@Mudde2007] definition of a party that uses a narrative of the "good public" against the "corrupt elite," just about every party in rich democracies does too. In other words, these parties are not uniquely defined by their general view that politics is corrupt; they are defined by their ethnic prejudices, desires of wanting to restore social order and national identity, and their hostile language. This raises a couple questions: (1) Does exposure to globalization really cause populism, or just far right nationalism? (2) Does exposure to globalization affect people differently? and (3) When measured properly, is populism even associated with hostile views of immigration?
+
+
+Studies in international political economy have tested many hypotheses about the relationship between globalization, social attitudes, and political attitudes. They vary in the dependent variable they study, which ranges from trade and immigration preferences to international bailouts and labor offshoring (Hainmueller and Hiscox [-@Hainmueller2007]; Mansfield and Mutz [-@Mansfield2013]; see Rodrik [-@Rodrik2021] for a survey of research). They also vary in the independent variable of interest, which ranges from unexpected exposure to trade to psychological vignettes about choosing which immigrants should be turned into a citizen from a pool of possible choices (Hainmueller and Hangartner [-@HAINMUELLER2013]). These studies are valuable because their research designs typically enable them to randomly assign (in the case of experiments) or as-if randomly assign (in the case of observational studies) a globalization treatment on social, economic, and political beliefs.
+
+But these studies also have a few shortcomings. Firstly, people's social and economic attitudes about globalization are not perfect maps onto their political preferences. Most individuals vote for who they voted for in the last election, which is typically based on party identification. For instance, suppose an individual becomes unemployed and subsequently has more negative view of immigration and free than before. Is this person likely to switch their preferred party or simply become more supportive of the party they already supported? Moreover, how do pretreatment characteristics like ethnic prejudice matter?
+
+Second, many studies in the literature on globalization and populism do not do a good enough job of distinguishing between populist and far right nationalist parties. Mudde and Kaltwasser [-@Mudde2018] note that most populist parties in the mid-2010s were both populist *and* nationalist. The combination makes for a "far right nationalist" party, which leaves the anti-institutions narrative of populism behind and embraces more of an anti-immigration and pro-natives narrative. As I discuss later, it is important not to empirically measure far right nationalist parties as populist, even though they technically check the populist box. This would, for example, put them in the same populist group as far left socialist parties.
+
+Third, most studies of globalization do not examine how the effect of being exposed depends on the type of party an individual likes. For example, we should not expect that being exposed to trade competition would impact how an extremely conservative person feels about immigration - they are probably anti-immigration already such that there is no more room for them to become more anti-immigration. I argue that studying how exposure to globalization heterogeneously affects individuals based on their preferred party type is both a crucial and useful way of understanding exactly who globalization causes to become more opposed to immigration, less supportive of free trade, or more supportive of protectionism writ large.
+
+I address these shortcomings by studying the relationships between globalization and populism when using a more detailed and alternative conception of populism. Specifically, I use data from the special wave of the 2014 European Social Survey (ESS), which included a special module on immigration. Through a question on which political party an individual feels closest to, I combine the ESS with the Chapel Hill Expert Survey (CHES) to measure whether an individual prefers a populist, authoritarian, mainstream, or populist-authoritarian party. Using a host of different descriptive and predictive tests, I quantify how extraordinarily different populist and populist-authoritarian voters.
+
+As a more rigorous test, I proceed to study whether populist and populist-authoritarian voters respond to exposure to globalization differently in terms of their immigration preferences. Using the special immigration questions from the 2014 ESS, I conduct an exploratory factor analysis (EFA) to identify latent immigration traits along "economic restrictions" and "ethnic restrictions" dimensions. I treat this as a dependent variable to be explained. Then, using occupational data from the European Social Survey, I use a matching model to identify subsamples of survey participants where the participants have observably similar characteristics on just about everything, except for that one subsample works in an occupation considered to be "exposed" to trade globalization while the other subsample does not. An example is working in plant and machine assembly or in craft and trades. Then, with the matched dataset in hand, I estimate the conditional average treatment effect of the treated (CATT) to quantify how much the effect of being occupationally exposed to globalization differs across populist supporters and populist authoritarian voters. In line with my hypothesis that populism and far right nationalism should not be treated as similar concepts, I find that occupational exposure does not affect the immigration preferences of far right nationalist supports whatsoever while it strongly affects the immigration preferences of populist supporters.
+
+
+My study is structured in the following way. Section (2) discusses background research on globalization and populism. Section (3) proceeds to discuss the important of distinguishing between populism and far right nationalism, and uses a handful of descriptive, inferential, and predictive models to prove that they are different concepts. Section (4) goes on to introduce my more rigorous research design for quantifying how different populist and far right nationalist voters are, including my exploratory factor analysis (EFA) and matching model. Section (5) discuss my results and concludes.
+
+# Background
+
+Trade and immigration have significantly transformed rich democracies. Increasingly liberal trade agreements have made it harder for manufacturing industries to compete against foreign producers, who can hire from large domestic supplies of cheap labor. It has also made it more difficult to subsidize industries that are not national security industries.^[Note, however, that an alternative method of delivering subsidies to *industries* is delivering subsidies to the types of individuals who work at those industries based on their observable characteristics. Dixit and Londregan [-@Dixit1998] argue that this type of indirect distribution of resources is easy and common (though it is probably wasteful, since the overlap between industry participation and wage/employment risk is only somewhat correlated).] 
+
+
+Similarly, immigration has transformed the labor markets and sociodemography compositions of rich democracies. Labor markets for unskilled workers are tighter while the sociodemographic landscape is more ethnically and religiously diverse than ever before. From both a material and sociocultural perspective, voters have a reason to search for change.
+
+Scholars frequently use these long-run trends to explain why populist parties performed well in the mid-2010s. Populist parties tend to support economic protectionism, both in terms of trade protection and immigration restrictions. Compared to mainstream parties, this is a break from political normality. Liberal and conservative parties usually support a continuation of national commitments to free trade and loose borders in exchange for compensating the losers of globalization (Ruggie [-@Ruggie1982]; Hays et al. [-@Hays2005]).^[Some mainstream liberal and conservative parties have become slightly more populist. This is likely for electoral expediency. However, they have not actually become populist in their ideological orientation.] While this can economically benefit a country in the aggregate, it distributes concentrated losses on the individuals who lose from tree trade and loose borders. Moreover, it allows the flow of immigration to continue when the labor market for unskilled workers is saturated, when technological change is taking place, and when sociodemographic shifts in the income distribution are occurring. Independent of whether these changes are "good" or "bad," there is an obvious "type" of worker whose economic and social fortunes are intensely threatened.
+
+But whether such exposure to globalization causes populism and nationalism is unclear. There are several reasons to be skeptical. The first is the concept of exposure to globalization has several properties. Depending on which property you look at, you might expect an exposed person to have especially low income, especially high income, liberal beliefs, conservative beliefs, or something in between. For example, when looking at the trade property of globalization, the people who are most exposed to import competition tend to have less income, less education, and more conservative beliefs than other people (see figure (\ref{fig:offshor1})). This is because trade exposure is mostly confined to manufacturing, which for most countries is concentrated outside liberal cities and employs unskilled workers. Hence, the subsample of people who are trade-exposed is not random. It tends to select a type of worker who, *ex ante*, is probably more likely to support a populist or far right nationalist party than your average person.
+
+\begin{center}
+[Insert figure (\ref{fig:offshor1}).]
+\end{center}
+
+Conversely, when looking at the offshorability property of being exposed, the people who are most exposed have more heterogeneous characteristics (Owen and Johnston [-@Owen2017]). The group of offshorable people includes programmers, software engineers, and data scientists, each of whom has a relatively high salary; there are also assembly line workers at production facilities, who have relatively low salaries. These types of workers also vary in their level of education, with programmers and software engineers typically having a college education while assembly line workers typically do not. In fact, oddly enough, the data suggest that offshorability and income have a positive and linear relationship (see figure (\ref{fig:offshor1})). This continues to hold true even when classifying workers into their respective NACE rev.2 industries, with the exception of the health and social work industry (see figure (\ref{fig:offshor2})). To put it simply, the claim that "globalization causes populism" is too blunt.
+
+\begin{center}
+[Insert figure (\ref{fig:offshor2}).]
+\end{center}
+
+Second, most studies that test for a causal mechanism across countries pool observations from different countries together (Hays et al. [-@Hays2019]; Norris and Inglehart [-@Norris2019]). This places individuals from qualitatively different institutional environments in the same sample, even though advanced industrialized democracies vary tremendously in their labor market institutions, immigration systems, and political-market structure. For instance, globalization might not matter much for a country with a strong social welfare state and a strict immigration system; material losses would be compensated, job retraining would be provided, and the quantity and quality of incoming migrants would be screened, selected, and limited. It would not be reasonable to compare how an individual from this type of country responds to globalization relative to an individual from a liberal market economy with loose immigration controls and a minimal social welfare system.
+
+Third, most studies do not seriously distinguish between the conceptual difference between "populism" and "far right nationalism." As Mudde [-@Mudde2007] defines it, populism is any narrative that has a theme of a "good public" facing a "corrupt elite." A far left socialist party can be "populist" if it thinks an incumbent government is corrupt, and a far right nationalist party can be "populist" for the same reason. Yet far left and far right parties have intensely different opinions on government redistribution and the role of race and ethnicity in political institutions. It is likely that the people who vote for far left parties are significantly different than the people who vote for far right parties. Hence, it communicates very little to say that globalization causes populism; it might even be correct for some types of populists but incorrect for others. It is like making a causal reference to "mainstream" parties when, in fact, most scholars care about liberal and conservative mainstream parties.
+
+
+
+# Populism versus Far Right Nationalism
+
+Depending on which dataset you prefer for measuring populism, the 2014 European Social Survey asked participants about as few as nine populist parties. This is a consequence of how populism has fared in elections, not the choices of the survey organization to ask about a limited set of parties. The marketplace for "plain populist" parties worsened in the 2010s, with most countries not having a viable populist party. By plain populist, I mean a party that believes the "good public" has been wronged by a "corrupt elite," but which does not swing the narrative into far right nationalism nor far left socialism. Instead, the political suppliers have shrunk to largely include mainstream parties and far right nationalist parties. For example, table (\ref{tab:popshares}) shows the share of survey participants in the ESS who felt closest to a populist. The PopuList column refers a classification of a party as populist if it was "populist" but neither far right nor far left. The CHES column refers to a classification of a party as populist if it breaches a 75 on a 0-100 measures of party populism from the Chapel Hill Expert survey. Although there is clearly a handful of countries for which survey participants felt close to populist parties (according to the CHES), it is remarkable how the majority of countries in the sample had no supporters of a populist party - PopuList or CHES. 
+
+\begin{center}
+[Insert table (\ref{tab:popshares}).]
+\end{center}
+
+A brief read of the extant literature globalization and populism would not reach this conclusion. Most studies in the literature operationalize the concept of populism into an analogical equivalent of "mainstream-ism" - a broad classification that groups (liberal and conservative) parties together based on an underlying characteristic that helps scholars understand their similarities, but which is not useful as an accurate description of how voters perceive the parties.
+
+There are two problems with this. The first is an information problem. For example, if you heard that mainstream parties did well in an election, you would immediately ask whether that meant liberal parties did well or that conservative parties did well. Moreover, upon hearing that a person voted for a mainstream party, you would ask which mainstream party they chose if you wanted to learn something valuable about the person in question. To make this more formal, suppose you wanted to explain whether a person $i \in 1,2,...,N$ voter for a mainstream party $Y_{i}=1$ or a populist party $Y_{i}=0$. You might specify a model $E(Y_{i})=\hat{f}_{Y}(X;\beta)$, where $X$ is a vector of explanatory variables related to vote choice, $\hat{\beta}$ is a vector of parameters, and $\hat{f}_{Y}$ is a function that maps $X$ to $Y$. If you observed that person $i$ voted for a mainstream party, you would struggle to make an inference about their set of characteristics. Put another way, if you were to draw samples from the conditional density $p(X_{i} | Y_{i}=1)$, the generated samples would have a high degree of variance. You would generate a staunch conservative at one time and a bleeding liberal at another.
+
+The second problem is a perception problem. Voters probably do not consider "mainstream" and "populist" to to be useful concepts for choosing parties. For example, neither the Manifesto Project nor the ParlGov project have a mainstream party family or a populist party family. Instead, they have party families like "Conservative," "Right-wing," "Communist/Socialist," "Liberal," "Christian Democracy," and "Green/Ecologist." This makes sense from the perspective of voters. When choosing between parties, voters need to know about the characteristics that distinguish party $A$ from party $B$. Knowing that party $A$ and $B$ are both mainstream does not help. It would be more helpful to know that party $A$ is "green" or "ecological," even if the party also has many commonalities with liberal and conservative parties. Hence from the perspective of voter perception, it makes the most sense to classify parties based on their stances that most uniquely define them.
+
+
+## Empirical Evidence
+
+In practice, how much does the misclassification of parties as "populist" confuse our inferences about attitudes and voting? I offer a few pieces of evidence. First, consider the distributions of survey participant preferences over (1) ethnic restrictions on immigrants and (2) political ideology, conditional on whether an individual feels closest to a "populist" or "populist-authoritarian" party. This is shown in figures (\ref{fig:popfrcomp})-(\ref{fig:popfrleftright}). The data on which this classification is based comes from the Chapel Hill Expert Survey, which measures parties along a 0-100 populism dimension and a 0-100 authoritarianism dimension. I coded parties using the following rules:
+
+\begin{equation}\label{dv}
+\text{Type of party preferred}=
+\begin{cases}
+\text{mainstream if} \; x_{\text{pop}}, x_{\text{auth}} < 75 \\
+\text{populist if} \; x_{\text{pop}} \geq 75 \; \text{and} \; x_{\text{auth}} < 75 \\
+\text{authoritarian if} \; x_{\text{auth}} \geq 75 \; \text{and} \; x_{\text{pop}} < 75 \\
+\text{populist-authoritarian if} \; x_{\text{auth}} \geq 75 \; \text{and} \; x_{\text{pop}} \geq 75.
+\end{cases}
+\end{equation}
+
+
+\noindent Continuing with the plot, the ethnic restrictions variable is standardized with a mean of 0 and a variance of 1. Higher values indicate a stronger preference for choosing immigrants based on ethnic and racial characteristics.^[The variable comes from an exploratory factor analysis (EFA) in a later section, where I project data on more than twenty immigration survey questions from the European Social Survey onto a lower-dimensional representation. It is the latent eigenvector with the second most share of total variance explained.] The left-right political ideology ranges from 0 to 10, with 0 being extremely liberal and 10 being extremely conservative. Conventional wisdom is that populist voters are like far right nationalists - they have strong anti-immigration preferences and lean conservative, at least in the European brand of populism.^[See Rodrik [-@Rodrik2021] for a survey of research on globalization and populism in Europe, as well as for the origin of this distinction of left and right populism.] If "populism" and "far right nationalism" are exchangeable concepts, which is consistent with how populism is operationalized in research, then the distributions should be similar.
+
+\begin{center}
+[Insert figure (\ref{fig:popfrcomp}).]
+\end{center}
+
+Figure (\ref{fig:popfrcomp})-(\ref{fig:popfrleftright}) clearly shows that populism is more similar to mainstream than it is to authoritarianism or populism-authoritarianism. For example, along the left-right political ideology dimension, supporters of plain populist parties are liberal on average, whereas supports of populist-authoritarian parties are conservative on average. Similarly, along the ethnic immigration preferences dimension, supporters of populist and mainstream parties have nearly identical preferences and are much more relaxed about ethnicity restrictions than are the supporters of populist-authoritarian parties. Taken together, these figures suggest that "plain populism" and "populism-authoritarianism" are, in the eyes of voters, fundamentally distinct concepts - they should not be kept under the same umbrella, even though they both qualify as populist.
+
+\begin{center}
+[Insert figure (\ref{fig:popfrleftright}).]
+\end{center}
+
+Another approach to gauging the difference between populist and authoritarian parties is to see what explanatory variables best predict them. If they are explained by different predictors or if the same predictors affect them in opposite directions, then we should treat them as distinct (and perhaps opposing) concepts. To do this, I continue with how I coded the parties using the CHES data in eq.(\ref{dv}). For the models, I denote $Y^{(FR)} \in \{0,1\}$ as 1 when a survey participant felt closest to a populist-authoritarian party and 0 otherwise.  Similarly, I denote $Y^{(P)} \in \{0,1\}$ as 1 when a survey participant felt closest to a populist party and 0 otherwise. Then, I regress each of these dependent variables to logistic regression models. I start basic and use only includes immigration preferences as predictors. I progressively add more variables to models. The second set includes social demographics and labor market characteristics; the third set includes subjective perceptions like trust in political institutions and satisfaction with democracy. The models have the statistical representation
+
+
+\begin{equation}\label{linmod}
+Y_{ic}=\alpha_{c} + x_{i}\beta + \boldsymbol{Z}_{i}\boldsymbol{\gamma} +\boldsymbol{S}_{i}\boldsymbol{\delta} + \epsilon_{i},
+\end{equation}
+
+
+\noindent where $\alpha_{c}$ is a country fixed effect, $X_{i}$ is the $1 \times 1$ vector of ethnic immigration preferences, $\boldsymbol{Z}_{i}$ is a $1\times K$ vector of sociodemographic characteristics, and $\boldsymbol{S}_{i}$ is a $1\times L$ vector of subjective perceptions. Since the dependent variables are binary, I use a logistic function $f(z)=\frac{1}{1+e^{-z}}$ to map $Y_{ic}$ onto a 0-1 space.
+
+
+Table (\ref{tab:linmod}) shows the results from eq.(\ref{linmod}). The first two columns refer to the simple models with immigration preferences as the only independent variable; the middle two columns refer to the models with the added observable characteristics; and the final two columns refer to the models with the added subjective characteristics. Each pair of models - that is, (1)-(2) and (3)-(4) and (5)-(6) - contains first the populist-authoritarian outcome and second the plain populist outcome. I included country fixed effects in every model but removed them from the output to save space.
+
+
+\begin{center}
+[Insert table (\ref{tab:linmod}).]
+\end{center}
+
+The table has a few relationships of interest. The first is that the effects of economic immigration preferences and ethnic immigration preferences are different depending on the model in question. For the populist-authoritarian models, the direction is positive. That is, stronger preferences for restrictions over immigration are associated with an increase in the probability of voting for a populist-authoritarian candidate. The reverse is true for the plain populist models. Here, stronger preferences for restrictions over immigration are associated with a lower probability of voting for a plain populist. These findings hold true even for the models that account for subjective beliefs about democracy and the economy. The second relationship of interest is that being relatively less educated is positively with voting for a populist-authoritarian, but negatively associated with voting for a plain populist. Finally, the third relationship is that being more conservative is strongly and positively associated with a higher probability of voting for a far right nationalist candidate. This reverses for plain populist candidates. The more liberal a person gets, the higher the probability of voting for a plain populist. Taken together, these results suggest even more strongly that populism and far right nationalism are fundamentally distinct concepts.
+
+
+To ensure the results are not dependent on my choice of estimator, I also fit a handful of regression trees. Regressions trees are non-parametric estimators that are especially good at uncovering non-linear relationships between a predictor and the outcome.^[They are non-parametric in the sense that their estimation does not involve an explicit likelihood model with unknown parameters. Instead, the model is estimated through a recursive partitioning process where the observations are iteratively split into categories based on making cutpoints in highly predictive independent variables. For more theoretical information on the method, see Breiman [-@Breiman2001].] I still use $Y^{(P)}$ and $Y^{(A)}$ as the dependent variables of interest, and I use the complete set of predictors that were used in the models of columns 5 and 6 from table (\ref{tab:linmod}). I use a train/test setup with four steps: (1) split the data into an 80/20 training and testing set; (2) train a random forest model on the training set and compute diagnostics; (3) apply the trained model to test data and compute diagnostics; and (4) calculate variable importance (VIP) scores as a way of measuring the relative importance of a predictor.^[VIP scores are non-parametric ways of calculating the extent to which an independent variable (or "feature") is useful for predicting the outcome. Higher scores indicate that a tree lost a great deal of predictive accuracy when a variable was permuted. Permuting an independent variable $x \in X$ means taking a vector of values $x=\{x_{1},x_{2},...,x_{N}\}$, randomly rearranging its values (e.g., switching the values of personal income for the survey participants at random), and then using this newly arranged vector (e.g., $x_{new}=\{x_{54},x_{412},...,x_{3}\}$). In a sense, this is like dropping the variable from the model because the newly rearranged vector should be independent of the outcome. If the original variable $x$ was important for predicting the outcome, then the overall accuracy of the tree should significantly drop after $x$ was permuted.] Per the dominant theory in the literature, we should find the variables that represent labor market exposure should strongly predict both populism and far right nationalism.
+
+Figures (\ref{fig:4})-(\ref{fig:7}) show the results. Figures (\ref{fig:4})-(\ref{fig:5}) show the results for predicting $Y^{(A)}$. The first takeaway is that political ideology is, by far, the first most important predictor, and that general immigration preferences is, by far, the second most important predictor. In fact, both of the variables appear multiple times throughout the decision tree in figure (\ref{fig:4}). This suggests that it was more valuable to repeatedly and finely chop the input space for immigration preferences than it was to use brand new predictors.
+
+
+\begin{center}
+[Insert figures (\ref{fig:4})-(\ref{fig:5}).]
+\end{center}
+
+
+
+Figures (\ref{fig:6})-(\ref{fig:7}) describe the results for predicting $Y^{(P)}$. The first point to note is that the strongest predictors of populism are the measures for how satisfied a survey participant is with democracy, the economy, and their government, followed by measures of how much they trust different political institutions. There is also evidence that labor market characteristics are important, specifically in that the occupation variable is a reasonably powerful predictor. This is likely the case because, as several studies have noted, occupational group is a good proxy for how rote a particular job is, which itself is a reasonable measure of whether a person's job can be cheaply automated. The decision tree in figure (\ref{fig:6}) visualizes which variables the tree splits on, as well as the values at which they are split.
+
+
+\begin{center}
+[Insert figures (\ref{fig:4})-(\ref{fig:5}).]
+\end{center}
+
+
+Overall, the empirical models uncovered several points that I take to the main analysis section. First, populism and far right nationalism are not very similar concepts. The variables that explain far right nationalism the most are, without a doubt, political ideology and immigration preferences. People are more likely to support more authoritarian parties the more conservative they become, as well as the more opposed to immigration they are. This conclusion tracks with the stereotype that people who vote for far right nationalists are, reliably, ethnically prejudiced. The second insight is that populism, at least when using the CHES measure, is predicted by both occupation group and general immigration preferences. However, these variables are relatively less useful than variables related to institutional trust and satisfaction. It could of course be the case that these subjective variables are endogenous occupational group and immigration preferences. While we would like to test for this causal ordering, we lack the data that would be necessary for such a test. The final point is that 
+
+
+# Data and Research Design
+
+My research design is premised on estimating the effect of exposure to globalization on immigration preferences, conditional on the ideology an individual has. I want to be able to better understand the conditions under which the stereotype of "globalization and populism" is accurate. We have to be careful when estimating the effect because it might be the case that the people who work in more exposed occupations and industries are *ex ante* more likely to support populists and far right nationalists. This is probably not true for all exposed occupations and industries, but it might be for specific industries like manufacturing or specific occupations like craft and trade related workers. In the following sections, I discuss the matching methods I use to ensure valid estimates.
+
+On the way to measuring this conditional average treatment effect of the treated (CATT), I also spend a good deal of time measuring the dependent variables, immigration preferences. I exploit the fact that the 2014 European Social Survey had a special module on immigration, with more than twenty questions asking participants about different angles of immigration. As I explain below, I used exploratory factor analysis (EFA) to project the survey responses onto a lower-dimensional representation. I was able to label the dimensions of the latent space by checking which factors (i.e., survey questions) loaded most strongly on which dimensions. I came away with three dependent variables: (1) preference for restrictions on immigration in general, (2) preference for economic restrictions on immigration, and (3) preference for ethnic and racial restrictions on immigration.
+
+
+
+## Exploratory Factor Analysis
+
+I use exploratory factor analysis (EFA) to measure participant immigration preferences in a multidimensional latent space.^[I chose factor analysis over alternatives like multidimensional item-response theoretic (MIRT) models for two reasons. First, I am not confident about the exact number of latent factors that explain variation in survey responses to immigration questions. It turns our that *four* latent dimensions is the most semantically meaningful, which is more than is usually specified in MIRT models. Second, most of the immigration questions are measured along an ordinal 0-10 scale. Using factor analysis lets me preserve this detailed scale; using MIRT would force me to collapse the scale onto a two-level (binary) or three-level (ordinal) scale, which would lose lots of valuable information. A three-level scale would, for example, treat an individual who answers "0" the same as an individual who answers "3" (or maybe even "4") on the 0-10 ordinal scale. Since there is probably a great deal of difference between the types of individuals who answer with a "0" and "4," I wanted to capture this as much as possible.] Table (\ref{tab:efaqs}) lists the questions, their coding directions, and the latent factors on which they loaded the highest. After estimation, I rotated the eigenvectors using the "oblimin" rotation to preserve the correlation between the latent factors.^[Some research papers use the "varimax" rotation, which forces the latent factors to be orthogonal. They do this to emphasize the distinctiveness of the latent factors. However, in this case, it is likely that a "cultural," "economic," or other type of latent perspective about immigration would be correlated within an individual. To make sure I keep this correlation structure, I opted for an oblimin rotation.] According to the table, the immigration survey questions are best represented using four latent factors. After adding more factors to represent the data, the marginal gain in the total share of variance explained decreases substantially.
+
+\begin{center}
+[Insert table (\ref{tab:efaqs}).]
+\end{center}
+
+Semantically, each factor is a distinct concept about immigration. The first latent factor is best described as a "general opposition" to immigrants. The questions with the highest factor loadings are broad and economic in nature, with none being ethnic or cultural. For example, a couple of the highest loading questions ask whether immigration is good or bad for the nation and whether immigrants take or create jobs. The second latent factor is best described as "economic restrictions on immigrants" concept. The survey questions with the highest loading factors are about educational qualifications, whether an immigrant has useful work skills, whether an immigrant speaks the national language, and whether an immigrant is committed to a similar way of life of natives. An alternative semantic representation would be "concern about societal integration." The third latent factor is best described as "ethnic and racial restrictions on immigrants." By far, the survey questions with the strongest factor loadings are about whether immigrants have Christian backgrounds, whether immigrants are white, and how much the survey participant would mind if a non-native immigrant were to be their boss or marry a close relative. While this gets at prejudice, it does not directly get explicit racism. They are more about nativism. The fourth latent factor, racism, is straightforward. The highest loading factors are questions about whether there are certain races and ethnic groups that are born less intelligent and less hard working.
+
+To help visualize the data, figures (\ref{fig:efaecon})-(\ref{fig:efaethnic}) show the distributions of the "economic restrictions" and "ethnic and racial restrictions" factors. Figure (\ref{fig:efaecon}) is the economic factor, whereas figure (\ref{fig:efaethnic}) is the ethnic factor.^[As a note about my empirical analyses, I use the country-specific EFA results for later models. This is a controversial choice, but I do for clear reasons. Every country, due to its political history, social norms, and cultural beliefs, have different baseline levels of economic and ethnic openness to immigrants. For example, Hungary is more socially conservative than Britain, such that Hungarian politics is probably more anti-immigrant than Britain on average. This relative difference should be reflected in Hungarian and British politics. Hungarian "liberal" parties are probably more anti-immigrant than British "liberal" parties; that is, the parties strategically respond to the interests of citizens, and the semantic idea of "liberal" along with it. This should be reflected in the data by adjusting the measures of latent factors to be specific to each country. Thus, the although figures (\ref{fig:efaecon})-(\ref{fig:efaethnic}) are useful for distinguishing the differences in immigration preferences between countries, I use the country-specific data instead. Since this data scales the latent factors to a standard normal distribution for each country, there is nothing striking about the results - hence I did not show them.] I conditioned the distributions by whether a participant identified as a "liberal" or "conservative" based on their response to the left-right ideology question. I classified them as "liberal" if they scored less than five and as "conservative" if they scored more than five. I left "moderates" out for visual simplicity.
+
+\begin{center}
+[Insert figures (\ref{fig:efaecon})-(\ref{fig:efaethnic}).]
+\end{center}
+
+The figures reveal two properties of the latent immigration preferences. The first is that, unsurprisingly, conservatives are generally more strict about immigration. That is, they prefer that their country use stronger economic and ethnic tools for screening immigrants. This is true for every country in the sample. The second property of the data is that western European democracies have much looser preferences than central and eastern European democracies. This conforms with conventional stereotypes that central and east European democracies are more opposed to immigration on religious and cultural grounds, given that the population of these countries tend to be more religiously orthodox than western European democracies. This should make readers feel more comfortable with the results of the factor analysis.
+
+
+## Data
+
+Aside from the dependent variables, I also constructed measures related to party choice and globalization. I measure party choice as the type of party an individual reported feeling closest to on the European Social Survey. The question has two parts. The first part asks, "Is there a particular political party you feel closer to than all other parties?" Respondents could answer with yes, no, or a type of refusal. I only kept the "yes" responses. The second question asks which party a respondent feels closest to, given that they said they feel close to a party. Respondents could answer by choosing a political party from a provided list of parties on the current political marketplace, where each party had a distinct integer code.
+
+The ESS does not provide a matching dataset for linking their party codes to real world political parties. To get around this, I used the PartyFacts database. The PartyFacts database records the party coding schemes of commonly used political science datasets. For example, it has party coding schemes for the Manifesto Project, ParlGov, PopuList, the Chapel Hill Expert Survey, the European Social Survey, and several dozen more. It also has its own "partyfacts_id," which is designed to be the common matching identifier that links one dataset to another. 
+
+I used this to gather party-level information from the Chapel Hill Expert Survey and match it to the participants in the European Social Survey. The result is that, for each participant in the survey who said they feel closest to a specific political party, I have measures of how authoritarian and how populist their favored party is. Among other things, the CHES measures party characteristics across dozens of social, economic, and political dimensions. I followed Norris and Inglehart [-@Norris2019] and used EFA to measure where parties sit on an authoritarian/liberal dimension and a populist/pluralist dimension. I normalized the factors to range between 0 and 100, with 100 being completely authoritarian (on the authoritarian/liberal dimension) and 100 being completely populist (on the populist/pluralist dimension). Then, in opposition to Norris and Inglehart [-@Norris2019], I collapsed the continuous measures onto a binary representation. I discusses this previously in eq.(\ref{dv}).
+
+
+The final features I constructed were indicators of exposure to globalization. The first feature is "occupational exposure." This is my treatment variable. I measure this as whether an individual's occupation fell into the elementary, plant and machine assembly, craft and trades, or skilled agriculture, forestry, and fishery occupation categories on the ISCO-08 occupation classifications. If it did, then I coded the individual as a 1; if it did not, I coded them as a 0. To account for differences within a major occupation class in how exposed it is, I used Owen and Johnston's [-@Owen2017] offshorability index. This index ranks 4-digit ISCO-88 occupations on how offshorable they are. To harmonize the ISCO-88 codes from 1988 with the ISCO-08 codes from 2008 in the European Social Survey, I used a crosswalk scheme from Humlum [-@Humlum2021].
+
+The second feature about globalization is trade exposure. This is a more complicated measure to derive. First, from the ESS data, I recorded the one-digit NACE rev.2 industry in which an individual was most recently employed. Then, for each country in the sample, I gathered product-level trade data from UN Comtrade using the SITC rev.3 coding scheme. Using a crosswalk coding method, I recorded whether a particular product $g \in 1,2,...,G$ belonged to industry $k \in 1,2,...,K$, such that each product could only belong to a single one-digit NACE rev.2 industry. I then calculated, for each industry $k$ in country $c$, the value of imports and exports from China starting at the earliest year $t$ for which data was available until the sample year $T=2014$. The earliest year was usually $t=1990$, but for some countries it was around $t=2000$. This corresponds to the measures
+
+
+
+\begin{equation}\label{impexp}
+\text{Imports}_{kct}=1 + \sum_{g: g \in k}v_{gtc}^{(I)} \\
+\text{Exports}_{kct}=1 + \sum_{g:g \in k}v_{gtc}^{(E)},
+\end{equation}
+
+\noindent where $g:g\in k$ represents the subset of goods $g \in 1,2,...,G$ such that good $g$ falls into industry $k$. The added 1 is to account for industries that were not traded at the start of the sample, but which were later on. This protects against calculating an infinite value when there is, in fact, data. Then, using eq.(\ref{impexp}), I calculated the ratio of imports to exports for industry $k$ in country $c$ for year $t$ as
+
+
+\begin{equation}\label{ratio}
+r_{kc,t}=\frac{\text{Imports}_{kc,t}}{\text{Exports}_{kc,t}}
+\end{equation}
+
+
+Using the ratio $r_{kc,t}$, I finally calculated the logged long-run import-export ratio as
+
+
+\begin{equation}\label{exposure}
+\text{Long-run import-export ratio}_{kc}=\log \frac{r_{kc,2014}}{r_{kc,2000}}.
+\end{equation}
+
+\noindent I logged the measure because it is immensely right-skewed due to a handful of industries virtually becoming much more dependent on imports over time. When this measure is high, it implies that the industry $k$ in country $c$ is highly vulnerable to trade.
+
+
+## Hypotheses and Research design
+
+My objective is to estimate the conditional average treatment effect of occupational exposure on different types of immigration preferences. The condition is going to be the type of party an individual feels closest to - a plain populist party, an authoritarian party, a populist-authoritarian party, or a mainstream party. These are based on the Chapel Hill Expert Survey measures. Under the hypothesis that "populism" is not related to hostile immigration preferences but that "far right nationalism" is, I expect the following:
+
+\textbf{Hypothesis 1:} \textit{Conditional on feeling close to a far right nationalist party, the treatment of being occupationally exposed will not be significantly associated with economic or ethnic immigration preferences.}
+
+\textbf{Hypothesis 2:} \textit{Conditional on feeling close to a populist party, the treatment of being occupationally exposed will be positively and significantly related to more strict prefereces over economic and ethnic immigration restrictions.}
+
+My logic is twofold. First, populist and far right nationalist voters are different. Therefore, their response to occupational exposure could also be different. Second, under the assumption that they are different, I expect populist voters to have malleable immigration preferences that respond to changes in their economic circumstances. This is why I expect occupational exposure to be associated with stronger preferences for immigration restrictions among populist voters. Conversely, I expect far right nationalists to already have permanent and unchangeable immigration preferences. Independent of whether they are occupationally exposed, they will already have strong preferences for immigration preferences.
+
+To test hypotheses (1) and (2), I need to randomly assign occupational exposure across a large sample of survey participants. To do this, I use matching methods. My goal is to create subsamples of occupation-exposed and occupation-not-exposed survey participants with observably similar characteristics, such that their distributions of covariate satisfy the unconfoundedness assumption.
+
+I chose to use a specific version of nearest neighbor matching that combines exact matching on categorical variables with Mahalanobis distance matching on continuous variables. This method only matches a treated unit $i:T_{i}=1$ to a control unit $j:T_{j}=0$ if (a) they have the same values on the categorical variables and (b) the distance between them in the $K$-dimensional space of the matching variables is lower than for any other pair $(i,k) \forall k\neq j$. I allowed each treated unit to be matched to two control units, and for control units to be re-used if they are the closest control neighbor to more than one treatment unit. I specifically chose this method because it does not use a propensity score model to identify plausible matches between the treatment and control units. This is a benefit because, as Iacus et al. [-@Iacus2011], two units $(i,j)$ can have completely different covariates but have the same propensity scores. By directly matching treatment and control units based on their positions in $K$-dimensional space, I avoid this problem entirely.
+
+When specifying the matching model, I used the following $K=9$ selection variables:
+
+\begin{enumerate}
+\item \textit{Education class} (categorical): Whether an individual had no college education, a vocational education, or a college education.
+\item \textit{Populism} (binary, 0-1): Whether the party an individual felt closest to was populist.
+\item \textit{Authoritarianism} (binary, 0-1): Whether the party an individual felt closest to was populist-authoritarian.
+\item \textit{Been unemployed} (categorical): Whether an individual has been unemployed before for more than a three-month period.
+\item \textit{Long run import-export ratio} (continuous): How exposed an individual's industry is to trade, using eq.(\ref{exposure}).
+\item \textit{Age} (continuous): How old an individual was.
+\item \textit{Left-right ideology} (integer, 0-10): Where an individual self-identifies on a 0-10 liberal-conservative ideology scale, with 0 being extremely liberal and 10 being extremely conservative.
+\item \textit{Income decile} (integer, 1-10): Which income decile an individual fell into.
+\end{enumerate}
+
+
+Figure (\ref{fig:lplot}) shows a Love plot that diagnose the quality of the matching results. Love plots describe, for each selection variable, how much the variances and standardized means of the treatment and controls differ. In a perfect world, the variance ratio $\frac{\sigma_{k[T=1]}^{2}}{\sigma_{k[T=0]}^{2}}$ for an explanatory variable $k$ would be 1, while the standardized mean difference would be 0. This information is shown in the left-hand and right-hands sides of figure (\ref{fig:lplot}). The red labels indicate the pre-matching data, whereas the green labels indicate the post-matching data. The dashed vertical lines indicate the boundaries for what is typically considered a high quality matching result. For the standardized mean difference, this is around a 0.1 difference; for the variance ratio difference, this is around a 1.5. In practice, any balance improvement over pre-matching sample is welcome. 
+
+
+\begin{center}
+[Insert figure (\ref{fig:lplot}).]
+\end{center}
+
+The matching algorithm clearly improved the balance for each of the $K$ selection variables. Broadly, distributional balance improved for every variable. This is implied by the fact that the green labeled points are closer to the ideal balance boundaries than the red labeled points. The only questionable result is the income decile variable. The standardized mean difference is around 0.2, which is larger than the ideal scenario of 0.1 but is still relatively good. The fact that the treatment and control groups are not superbly balanced on the income decile mean that readers should take caution when interpreting the marginal effects of these variables on immigration preferences.
+
+
+## Model
+
+After having run the matching algorithm, I estimate the following model:
+
+
+\begin{equation}\label{att}
+Y_{i}=\alpha_{c}+\delta T_{i} + \beta X_{i} + \gamma*(T_{i}X_{i}) + \epsilon_{i},
+\end{equation}
+
+\noindent where $Y_{i}$ is the dependent variable, $\alpha_{c}$ is a country fixed effect, $\delta$ is the average treatment effect of the treated, $\beta$ is a vector of coefficients on the explanatory variables, and $\gamma$ is a vector of coefficients on the interactions between the treatment and the explanatory variables. To reduce bias as much as possible, I included a treatment interaction for every explanatory variable. I estimate eq.(\ref{att}) for preferences over economic restrictions on immigration and preferences over ethnic restrictions on immigration.
+
+
+# Results
+
+I first discuss my results broadly, and then I narrow my focus to heterogeneous treatment effects (a.k.a, conditional average treatment effects). 
+
+Table (\ref{tab:outs}) shows the statistical results for the economic and ethnic immigration models. The first column refers the economic model while the second column refers to the ethnic model. The direction of the coefficients describe whether an explanatory variable of interest is associated with an increase or decrease in the dependent variable. However, as Brambor et al.[-@Brambor2006] note, one should be careful when interpreting the statistical results. Since an explanatory variable appears in several terms, it could be significant in one term and not significant in another.
+
+\begin{center}
+[Insert table (\ref{tab:outs}).]
+\end{center}
+
+
+A better way to communicate the results is through graphical visualizations. I chose to use conditional contrast (CCO) plots. A conditional contrast plot describes how a "contrast variable" $Z$ affects the outcome of interest $Y$ while varying an explanatory variable $X$. More formally, is the calculation
+
+\begin{equation}\label{contrast}
+\text{CCO}(Y,Z|X=x)=\frac{1}{N}\sum_{i}\Pr(Y_{i}=1|\tilde{X}_{i},Z_{i}=1,X_{i}=x)-\Pr(Y_{i}=1|\tilde{X}_{i},Z_{i}=0,X_{i}=x),
+\end{equation}
+
+\noindent where the probability function $\Pr(\cdot)$ in eq.(\ref{contrast}) is a fitted statistical model $\hat{f}(X;\hat{\beta})$.
+
+
+I used eq.(\ref{contrast}) to compute two CCO plots for each dependent variable. I first show and discuss the CCOs for the ethnic immigration model. Figure (\ref{fig:ccoethnicches}) shows the conditional contrast plot for the effect of occupational exposure on ethnic immigration preferences, sorted by the type of party a survey participant felt closest to. Recall that my hypothesis was that the conditional effect would be zero for populist-authoritarian voters (because they already have strong preferences for ethnic restrictions), and that it would be positive for plain populist voters. The plot suggests that this hypothesis is wrong. It appears that mainstream survey participants are the only ones who occupational exposure significantly affects. For the authoritarian, populist-authoritarian, and plain populist survey participants, the contrast effect is indistinguishable from zero. For the mainstream survey participants, the contrast effect is to increase preferences for ethnic restrictions over immigration by about $\frac{2}{10}$s of a standard deviation. Considering that mainstream voters have a mean ethnic immigration preference of $-0.057$, this means that occupational exposure moves a mainstream survey participant onto the strict side of immigration restrictions, on average.
+
+
+\begin{center}
+[Insert figure (\ref{fig:ccoethnicches}).]
+\end{center}
+
+Figure (\ref{fig:ccoethnicches}) keeps the ethnic model but changes the condition of interest. Now the figure shows the conditional contrast plot for the effect of occupational exposure on ethnic immigration preferences, sorted by political ideology. Here, it is clear that the contrast effect of occupational exposure moves toward zero the more conservative an individual becomes. This is because the more extremely conservative a survey participant is, the more likely it is that they already have strong immigration preferences that are hard to budge. There is also less room for them to have stricter preferences. For liberal voters, the contrast effect is surprisingly large. For extremely liberal voters, who have a mean ethnic immigration preference of $-0.289$, the point estimate for the contrast effect is nearly $0.35$s of a standard deviation. Again, this implies that occupational exposure moves an extremely liberal person onto the strict side of ethnic restrictions on immigration, on average.
+
+\begin{center}
+[Insert figure (\ref{fig:ccoethnicleftright}).]
+\end{center}
+
+I now move to graphical interpretations for the model of economic immigration preferences. Figure (\ref{fig:ccoeconches}) shows the conditional contrast plot for the effect of occupational exposure on preferences for economic restrictions over immigration, conditional on the type of party a survey participant felt closest to. Here, the result is different than for the ethnic preferences model. According to figure (\ref{fig:ccoeconches}), occupational exposure increases how much populist survey participants want economic restrictions over immigration, on average. Meanwhile, it neither increases nor decreases how much populist-authoritarian survey participants wants economic restrictions. This result is consistent with my hypotheses that (a) populist and populist-authoritarian voters are different and that (b) populist voters would be more responsive to occupational exposure than populist-authoritarian votes. I cannot confirm exactly why this is the case, by my hypothesis was that it is was because populist voters have relatively moderate views about immigration and therefore able to persuaded toward wanting more restrictions; populist-authoritarian voters, on the other hand, already have strong preferences for restrictions such that occupational exposure would not make them any more extreme.
+
+\begin{center}
+[Insert figure (\ref{fig:ccoeconches}).]
+\end{center}
+
+Figure (\ref{fig:ccoeconleftright}) changes the conditional contrast plot to study the contrast effect of occupational exposure, given a survey participant's left-right ideology. Here, the graph is nearly identical to figure (\ref{fig:ccoethnicleftright}). This means that more conservative voters are less able to be influenced by occupational exposure compared to more liberal voters. This, again, is not surprising. Liberal voters have looser preferences over economic restrictions on immigration than conservative voters. Hence, working in an exposed occupation is likely to influence liberal voters more than it would influence conservative voters.
+
+
+
+\begin{center}
+[Insert figure (\ref{fig:ccoeconleftright}).]
+\end{center}
+
+
+Overall, there is a good deal of evidence for my hypotheses. Figures (\ref{fig:ccoethnicches})-(\ref{fig:ccoeconleftright}) suggest that populist and populist-authoritarian voters respond to occupational exposure in different ways. Populist-authoritarian voters, already being relatively opposed to immigration on economic and ethnic grounds, are not significantly affected by occupational exposure. However, populist voters, being relatively not opposed to immigration on either economic or ethnic grounds, become more supportive of stronger immigration restrictions after being occupationally exposed. Broadly speaking, this result should be interpreted as meaning that "populism" and "far right nationalism" - or populism and populism-authoritarianism - are not similar concepts. Combined with the evidence provided in the preceding sections, it is the case that populist voters are much more similar to mainstream voters than they are to either authoritarian or populist-authoritarian voters.
+
+
+# Conclusion
+
+My original question was whether globalization and populism are truly related. To answer this question from a different angle than usual, I argued that "populism" has not been accurately treated by many empirical researchers. I hypothesized that if we decompose populism into its different political manifestations (e.g., far left socialism, far right nationalism, plain populism), globalization would cease to be associated with "populism" and would only be associated with "far right nationalism." I show a large number of descriptive statistics as evidence in favor of my hypothesis. I then proceeded to show that "populist" and "populist-authoritarian" voters exhibit different behavioral responses to occupational exposure, a type of globalization.
+
+
+What should we conclude from my findings? I argue that my findings show a couple things. First, they show that empirical research on globalization and populism needs to be re-examined. Many of the studies that find a positive relationship between the two might produce different results with a more accurate operationalization of populism that reflects its conceptual integrity. Second, they show populist voters and far right nationalist voters have very little in common. It is not the case that globalization causes voters to support far right nationalist parties. Instead, the people who vote for far right nationalist parties likely would have done so, independent of whether they were exposed to globalization.
+
+This leads me to my final point. There is no question that populism waned in popularity in the 2010s while far right nationalism waxed. Contrary to media narratives, it does not appear to be the case that globalization caused this. Then what did? I argue that more research needs to be done to explain why, around the start of the 2010s, far right nationalism had a resurgence. It seems likely that the growth of far right nationalism was due a change in an underlying state of the world in rich democracies, not a change in labor markets. This should be a future avenue for research.
+
+
+
+\newpage
+
+# Appendix
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{plot_offshore_income_all.png}
+\caption{Bivariate plot of a survey participant's income decile against their offshorability. The offshorability measure comes from Owen and Johnston (2017), while the income data comes from the European Social Survey. The regression line was fitted under the assumption of linearity.}
+\label{fig:offshor1}
+\end{figure}
+
+
+
+
+\newpage
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{plot_offshore_income_by_industry.png}
+\caption{Bivariate plot of a survey participant's income decile against their offshorability, decomposed by industry. The offshorability measure comes from Owen and Johnston (2017), while the income data comes from the European Social Survey. The regression line was fitted under the assumption of linearity.}
+\label{fig:offshor2}
+\end{figure}
+
+\newpage
+
+
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{plot_ches_cond_dist_imm.png}
+\caption{Conditional distribution plot of preferences over ethnic immigration restrictions, by CHES party type. The party codes come from CHES, while the preference data come from an exploratory factor analysis on ESS questions related to immigration. Higher values along the x-axis indicate a preferences from stronger ethnic restrictions on immigration.}
+\label{fig:popfrcomp}
+\end{figure}
+
+
+\newpage
+
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{plot_ches_cond_polid.png}
+\caption{Conditional distribution plot of political ideology, by CHES party type. The party codes come from CHES, while the political ideology data come from the 2014 European Social Survey Higher values along the x-axis indicate more conservative preferences.}
+\label{fig:popfrleftright}
+\end{figure}
+
+
+\newpage
+
+
+
+<!-- ```{r} -->
+<!-- # make table of populism by country -->
+<!-- tab1 <- descripts$tables$populist_shares_by_country -->
+
+<!-- # generate latex code -->
+<!-- stargazer(tab1, -->
+<!--           summary = FALSE, style = "qje", header = FALSE, -->
+<!--           digits = 2, flip = FALSE,  -->
+<!--           title = "Logistic regression models of party choice", -->
+<!--           covariate.labels = c("Country", "Plain populist", "Populist, CHES", -->
+<!--                                "Observations", "Share"), -->
+<!--           label = "tab:popshares") -->
+
+<!-- ``` -->
+
+
+\begin{table}[!htbp] \centering 
+  \caption{Logistic regression models of party choice} 
+  \label{tab:popshares} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
+\\[-1.8ex]\hline \\[-1.8ex] 
+Country & Plain populist & Populist, CHES & Observations & Share & plain\_pop\_share & pop\_ches\_share \\ 
+\hline 
+\hline \\[-1.8ex] 
+1 & Poland & 0 & 186 & 427 & 0 & 0.44 \\ 
+2 & Spain & 0 & 398 & 1169 & 0 & 0.34 \\ 
+3 & Czechia & 179 & 198 & 635 & 0.28 & 0.31 \\ 
+4 & Hungary & 0 & 174 & 623 & 0 & 0.28 \\ 
+5 & Portugal & 0 & 120 & 679 & 0 & 0.18 \\ 
+6 & France & 0 & 155 & 982 & 0 & 0.16 \\ 
+7 & United Kingdom & 0 & 166 & 1165 & 0 & 0.14 \\ 
+8 & Finland & 0 & 127 & 1047 & 0 & 0.12 \\ 
+9 & Belgium & 0 & 19 & 907 & 0 & 0.02 \\ 
+10 & Estonia & 0 & 12 & 977 & 0 & 0.01 \\ 
+11 & Austria & 2 & 2 & 878 & 0 & 0 \\ 
+12 & Denmark & 0 & 0 & 1002 & 0 & 0 \\ 
+13 & Germany & 0 & 0 & 1654 & 0 & 0 \\ 
+14 & Ireland & 0 & 0 & 760 & 0 & 0 \\ 
+15 & Israel & 0 & 0 & 1284 & 0 & 0 \\ 
+16 & Lithuania & 179 & 3 & 659 & 0.27 & 0 \\ 
+17 & Netherlands & 0 & 0 & 1053 & 0 & 0 \\ 
+18 & Norway & 3 & 0 & 936 & 0 & 0 \\ 
+19 & Slovenia & 0 & 0 & 387 & 0 & 0 \\ 
+20 & Sweden & 0 & 0 & 1298 & 0 & 0 \\ 
+21 & Switzerland & 4 & 0 & 794 & 0.01 & 0 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+
+
+
+
+\newpage
+
+
+
+
+<!-- ```{r} -->
+<!-- # use to generate latex code for table -->
+
+<!-- # get simple models from object -->
+<!-- mod1 <- linmods[[2]] -->
+<!-- mod2 <- linmods[[3]] -->
+<!-- mod3 <- linmods[[4]] -->
+<!-- mod4 <- linmods[[5]] -->
+<!-- mod5 <- linmods[[6]] -->
+<!-- mod6 <- linmods[[7]] -->
+
+<!-- # get character vector of names to exclude -->
+<!-- names_exclude <- -->
+<!--   tidy(mod1) %>% -->
+<!--   filter(str_detect(term, "cntry")) %>% -->
+<!--   pull(term) -->
+
+<!-- # make table -->
+<!-- stargazer(mod1, mod2, mod3, mod4, mod5, mod6, -->
+<!--           summary = FALSE, style = "qje", header = FALSE, -->
+<!--           digits = 2, flip = TRUE, font.size = "tiny", -->
+<!--           intercept.top = TRUE, -->
+<!--           intercept.bottom = FALSE, -->
+<!--           dep.var.labels = c("party closest to"), -->
+<!--           title = "Logistic regression models of party choice", -->
+<!--           omit = names_exclude, -->
+<!--           column.labels = rep(c("pop-auth", "populist"), times = 3), -->
+<!--           covariate.labels = c("constant", "imm econ", "imm ethnic", -->
+<!--                                "left-right", "age", "no college", -->
+<!--                                "vocational", "clerical support", -->
+<!--                                "craft and trades", "elementary", -->
+<!--                                "occ managers", "occ professionals", -->
+<!--                                "occ service and sales", -->
+<!--                                "occ techs", "income decile", -->
+<!--                                "log imp-exp ratio", "offshorability", -->
+<!--                                "RTI", "satisf. dem.", "satisf. econ.", "trust pols."), -->
+<!--           model.numbers = FALSE, -->
+<!--           column.sep.width = "1pt", -->
+<!--           omit.stat = c("ser", "f"), -->
+<!--           label = "tab:linmods") -->
+<!-- ``` -->
+
+\begin{table}[!htbp] \centering 
+  \caption{Logistic regression models of party choice.} 
+  \label{tab:linmod} 
+\tiny
+\begin{tabular}{@{\extracolsep{1pt}}lcccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+\\[-1.8ex] & party closest to & c\_populist & c\_auth\_populist & c\_populist & c\_auth\_populist & c\_populist \\ 
+ & pop-auth & populist & pop-auth & populist & pop-auth & populist \\ 
+\hline \\[-1.8ex] 
+ constant & $-$21.70 & $-$6.12$^{***}$ & $-$21.96 & $-$4.48$^{***}$ & $-$20.67 & $-$3.75$^{***}$ \\ 
+  & (986.60) & (0.71) & (1,142.86) & (1.13) & (1,081.21) & (1.15) \\ 
+  & & & & & & \\ 
+ imm econ & 0.42$^{***}$ & $-$0.23$^{***}$ & 0.41$^{***}$ & $-$0.17$^{***}$ & 0.36$^{***}$ & $-$0.16$^{**}$ \\ 
+  & (0.06) & (0.05) & (0.07) & (0.06) & (0.07) & (0.07) \\ 
+  & & & & & & \\ 
+ imm ethnic & 0.35$^{***}$ & $-$0.27$^{***}$ & 0.32$^{***}$ & $-$0.18$^{**}$ & 0.31$^{***}$ & $-$0.19$^{**}$ \\ 
+  & (0.05) & (0.05) & (0.07) & (0.08) & (0.07) & (0.08) \\ 
+  & & & & & & \\ 
+ left-right &  &  & 0.20$^{***}$ & $-$0.20$^{***}$ & 0.25$^{***}$ & $-$0.16$^{***}$ \\ 
+  &  &  & (0.02) & (0.02) & (0.02) & (0.03) \\ 
+  & & & & & & \\ 
+ age &  &  & $-$0.03$^{***}$ & $-$0.03$^{***}$ & $-$0.03$^{***}$ & $-$0.03$^{***}$ \\ 
+  &  &  & (0.003) & (0.004) & (0.004) & (0.004) \\ 
+  & & & & & & \\ 
+ no college &  &  & 0.82$^{***}$ & $-$0.16 & 0.75$^{***}$ & $-$0.13 \\ 
+  &  &  & (0.18) & (0.18) & (0.19) & (0.19) \\ 
+  & & & & & & \\ 
+ vocational &  &  & 0.63$^{***}$ & $-$0.22 & 0.49$^{**}$ & $-$0.22 \\ 
+  &  &  & (0.20) & (0.24) & (0.21) & (0.25) \\ 
+  & & & & & & \\ 
+ clerical support &  &  & 0.28 & 0.38 & 0.26 & 0.47 \\ 
+  &  &  & (0.34) & (0.49) & (0.36) & (0.50) \\ 
+  & & & & & & \\ 
+ craft and trades &  &  & 0.89$^{***}$ & 0.32 & 0.94$^{***}$ & 0.42 \\ 
+  &  &  & (0.32) & (0.48) & (0.34) & (0.49) \\ 
+  & & & & & & \\ 
+ elementary &  &  & 0.12 & 0.08 & 0.13 & 0.15 \\ 
+  &  &  & (0.33) & (0.48) & (0.35) & (0.49) \\ 
+  & & & & & & \\ 
+ occ managers &  &  & 0.15 & 0.18 & 0.19 & 0.28 \\ 
+  &  &  & (0.36) & (0.55) & (0.38) & (0.56) \\ 
+  & & & & & & \\ 
+ occ professionals &  &  & 0.31 & 0.76 & 0.36 & 0.84$^{*}$ \\ 
+  &  &  & (0.33) & (0.49) & (0.35) & (0.50) \\ 
+  & & & & & & \\ 
+ occ service and sales &  &  & 0.51$^{*}$ & 0.63 & 0.46 & 0.70 \\ 
+  &  &  & (0.30) & (0.46) & (0.31) & (0.47) \\ 
+  & & & & & & \\ 
+ occ techs &  &  & 0.41 & 0.81$^{*}$ & 0.44 & 0.89$^{*}$ \\ 
+  &  &  & (0.30) & (0.46) & (0.32) & (0.47) \\ 
+  & & & & & & \\ 
+ income decile &  &  & $-$0.08$^{***}$ & $-$0.02 & $-$0.05$^{**}$ & $-$0.002 \\ 
+  &  &  & (0.02) & (0.03) & (0.02) & (0.03) \\ 
+  & & & & & & \\ 
+ log imp-exp ratio &  &  & 0.01 & 0.01 & 0.01 & 0.01 \\ 
+  &  &  & (0.02) & (0.02) & (0.02) & (0.02) \\ 
+  & & & & & & \\ 
+ offshorability &  &  & $-$0.02 & $-$0.07 & $-$0.0002 & $-$0.07 \\ 
+  &  &  & (0.07) & (0.07) & (0.07) & (0.07) \\ 
+  & & & & & & \\ 
+ RTI &  &  & 0.16$^{**}$ & 0.24$^{***}$ & 0.13 & 0.22$^{***}$ \\ 
+  &  &  & (0.08) & (0.08) & (0.08) & (0.08) \\ 
+  & & & & & & \\ 
+ satisf. dem. &  &  &  &  & $-$0.23$^{***}$ & $-$0.14$^{***}$ \\ 
+  &  &  &  &  & (0.03) & (0.03) \\ 
+  & & & & & & \\ 
+ satisf. econ. &  &  &  &  & $-$0.03 & $-$0.03 \\ 
+  &  &  &  &  & (0.03) & (0.03) \\ 
+  & & & & & & \\ 
+ trust pols. &  &  &  &  & $-$0.19$^{***}$ & $-$0.05 \\ 
+  &  &  &  &  & (0.03) & (0.03) \\ 
+  & & & & & & \\ 
+\textit{N} & 16,473 & 16,473 & 11,947 & 11,947 & 11,947 & 11,947 \\ 
+Log Likelihood & $-$1,942.68 & $-$1,590.28 & $-$1,249.42 & $-$925.35 & $-$1,114.72 & $-$901.23 \\ 
+Akaike Inf. Crit. & 3,929.37 & 3,224.55 & 2,570.84 & 1,922.71 & 2,307.44 & 1,880.45 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Notes:} & \multicolumn{6}{r}{$^{***}$Significant at the 1 percent level.} \\ 
+ & \multicolumn{6}{r}{$^{**}$Significant at the 5 percent level.} \\ 
+ & \multicolumn{6}{r}{$^{*}$Significant at the 10 percent level.} \\ 
+\end{tabular} 
+\end{table} 
+
+
+
+\newpage
+
+
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{auth_liberal_prune_tree_plot.png}
+\caption{Visual representation of the regression tree model for how authoritarian an individual's preferred party is. The tree was pruned after ten splits were made; the full tree is significantly longer.}
+\label{fig:4}
+\end{figure}
+
+
+
+
+\newpage
+
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{auth_liberal_vip_plot.png}
+\caption{Variable importance scores for regression tree predicting how authoritarian an individual's preferred party is.}
+\label{fig:5}
+\end{figure}
+
+
+
+
+
+\newpage
+
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{pop_plural_prune_tree_plot.png}
+\caption{Visual representation of the regression tree model for how populist an individual's preferred party is. The tree was pruned after ten splits were made; the full tree is significantly longer.}
+\label{fig:6}
+\end{figure}
+
+
+
+\newpage
+
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{pop_plural_vip_plot.png}
+\caption{Variable importance scores for regression tree predicting how populist an individual's preferred party is.}
+\label{fig:7}
+\end{figure}
+
+
+
+\newpage
+
+
+
+```{r, eval = TRUE, results = "asis"}
+
+# # ----- USE TO GET TEXT FORM OF TABLE, THEN FORMAT
+# # load table
+# fa_table <- read_csv("factor_analysis_loadings.csv") %>%
+#   mutate(across(.cols = c(general_imm_pref:racism),
+#                 .fns = ~ifelse(is.na(.x), "", .x)))
+# 
+# # plot table
+# stargazer(fa_table,
+#           style = "qje",
+#           summary = FALSE,
+#           font.size = "tiny",
+#           title = "Factor analysis results, by question.",
+#           header = FALSE,
+#           covariate.labels = c("Question", "Abbr.", "Scale",
+#                                "General", "Ethnic restrict",
+#                                "Econ restrict", "Racism"),
+#           rownames = FALSE,
+#           label = "tab:5")
+
+```
+
+
+
+\begin{sidewaystable}[!htbp] \centering 
+  \caption{Factor analysis results, by question.} 
+  \label{tab:efaqs} 
+\tiny
+\begin{tabular}{@{\extracolsep{5pt}} ccccccc} 
+\\[-1.8ex]\hline \\[-1.8ex] 
+Question & Abbr. & Scale & General & Ethnic restrict & Econ restrict & Racism \\ 
+\hline 
+\hline \\[-1.8ex] 
+Government should be generous in judging refugees & gvrfgap & 0-1 & 0.36 & 0.12 & 0.1 &  \\ 
+Immigration: bad or good for economy & imbgeco & 0-10 & 0.74 &  &  &  \\ 
+Immigration: take more taxes than they put in & imbleco & 0-10 & 0.71 &  &  &  \\ 
+Immigration: mad with boss of difference race/ethnic group & imdetbs & 0-10 &  & 0.74 &  &  \\ 
+Immigration: mad if immigrant with different race/ethnicity marries close relative & imdetmr & 0-10 &  & 0.77 &  &  \\ 
+Immigration: take or create jobs & imtcjob & 0-10 & 0.68 &  &  &  \\ 
+Immigration: undermine or enrich culture & imueclt & 0-10 & 0.7 & 0.12 &  &  \\ 
+Immigration: make country worse or better place to live & imwbcnt & 0-10 & 0.78 &  &  &  \\ 
+Immigration: worse or better for crime & imwbcrm & 0-10 & 0.56 & -0.13 &  &  \\ 
+Law against racial or ethnic discrimination in work place & lwdscwp & 0-10 & 0.19 & 0.14 &  &  \\ 
+Better if almost every shares customs and traditions & pplstrd & 0-1 & 0.21 & 0.27 & 0.18 &  \\ 
+Christian background & qfimchr & 0-10 & -0.11 & 0.56 & 0.24 &  \\ 
+Committed to national way of life & qfimcmt & 0-10 & 0.12 &  & 0.5 &  \\ 
+Good educational qualifications for immigration & qfimedu & 0-10 &  &  & 0.74 &  \\ 
+Speak country's official language & qfimlng & 0-10 &  &  & 0.67 &  \\ 
+Be white & qfimwht & 0-10 &  & 0.61 & 0.16 &  \\ 
+Have needed work skills & qfimwsk & 0-10 &  &  & 0.76 &  \\ 
+Immigration undermines or enriches religious beliefs and practices & rlgueim & 0-10 & 0.54 &  &  &  \\ 
+Some cultures better or worse & smctmbe & 0-1 & 0.1 &  &  & 0.33 \\ 
+Some races or ethnic groups born harder working & smegbhw & 0-1 &  &  &  & 0.63 \\ 
+Some races or ethnic groups born less intelligent & smegbli & 0-1 &  &  &  & 0.64 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\end{tabular}
+\end{sidewaystable} 
+
+
+
+
+
+\newpage
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{latent_ethnic_factor_plot.png}
+\caption{Distribution of preferences for ethnic restrictions. Values have a standard normal distribution with mean 0 and variance 1. Higher values indicate a preference for more stronger ethnic restrictions placed on immigrants. The shading of the distributions condition survey participants by their political beliefs.}
+\label{fig:efaecon}
+\end{figure}
+
+
+
+\newpage
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{latent_econ_factor_plot.png}
+\caption{Distribution of preferences for economic restrictions. Values have a standard normal distribution with mean 0 and variance 1. 
+Higher values indicate a preference for more stronger economic restrictions placed on immigrants. The shading of the distributions condition survey participants by their political beliefs.}
+\label{fig:efaethnic}
+\end{figure}
+
+
+\newpage
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{loveplot.png}
+\caption{Love plot for matching results. The left side panel describes, for each matching varaible, the standardized mean difference between the treatment and control subsamples. A value of 0 is ideal, and values less than 0.1 are considered high quality. The right panel describes the corresponding variance ratios between the treatment and control subsamples. Since exact matching was used on categorical variables, the variance ratios must be 1 and are hence not labeled. For both plots, the red labels indicate pre-matching and the green labels indicate post-matching.}
+\label{fig:lplot}
+\end{figure}
+
+
+
+
+\newpage
+
+
+
+
+
+<!-- ```{r} -->
+<!-- # get models -->
+<!-- modeth <- matching_res$ethnic_models$matching_models$treat_mod -->
+<!-- modecon <- matching_res$econ_models$matching_models$treat_mod -->
+
+<!-- # get names to exclude -->
+<!-- names.exclude.treat <- -->
+<!--   tidy(modeth) %>% -->
+<!--   filter(str_detect(term, "cntry")) %>% -->
+<!--   pull(term) -->
+
+<!-- # get latex code -->
+<!-- stargazer(modeth, modecon, -->
+<!--           summary = FALSE, style = "qje", header = FALSE, -->
+<!--           digits = 2, font.size = "small", -->
+<!--           intercept.top = TRUE, -->
+<!--           intercept.bottom = FALSE, -->
+<!--           title = "Conditional Average Treatment Effect Models, for Occupational Exposure", -->
+<!--           omit = names.exclude.treat, -->
+<!--           column.labels = c("ethnic preferences", "economic preferences"), -->
+<!--           covariate.labels = c("constant", "(treat) occ exposure", "no college", "vocational", -->
+<!--                                "age", "left-right", "long run imp-exp ratio", -->
+<!--                                "been unemployed", "income decile", -->
+<!--                                "populist-authoritarian", "mainstream", "populist", -->
+<!--                                "treat.no college", "treat.vocational", -->
+<!--                                "treat.age", "treat.left-right",  -->
+<!--                                "treat.long run imp-exp ratio", -->
+<!--                                "treat.been unemployed", "treat.income decile", -->
+<!--                                "treat.populist-authoritarian",  -->
+<!--                                "treat.mainstream", "treat.populist"), -->
+<!--           model.numbers = FALSE, -->
+<!--           column.sep.width = "1pt", -->
+<!--           omit.stat = c("ser", "f"), -->
+<!--           label = "tab:outs") -->
+
+<!-- ``` -->
+
+
+\begin{table}[!htbp] \centering 
+  \caption{Conditional Average Treatment Effect Models, for Occupational Exposure.} 
+  \label{tab:outs}
+\tiny 
+\begin{tabular}{@{\extracolsep{1pt}}lcc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+\\[-1.8ex] & \multicolumn{2}{c}{dv} \\ 
+ & ethnic preferences & economic preferences \\ 
+\hline \\[-1.8ex] 
+ constant & $-$0.18$^{*}$ & $-$0.27$^{***}$ \\ 
+  & (0.10) & (0.10) \\ 
+  & & \\ 
+ (treat) occ exposure & $-$0.05 & 0.09 \\ 
+  & (0.16) & (0.16) \\ 
+  & & \\ 
+ no college & 0.22$^{***}$ & 0.23$^{***}$ \\ 
+  & (0.07) & (0.07) \\ 
+  & & \\ 
+ vocational & 0.11 & 0.15$^{*}$ \\ 
+  & (0.08) & (0.08) \\ 
+  & & \\ 
+ age & 0.26$^{***}$ & 0.19$^{***}$ \\ 
+  & (0.01) & (0.01) \\ 
+  & & \\ 
+ left-right & 0.08$^{***}$ & 0.07$^{***}$ \\ 
+  & (0.01) & (0.01) \\ 
+  & & \\ 
+ long run imp-exp ratio & $-$0.01$^{**}$ & $-$0.003 \\ 
+  & (0.01) & (0.01) \\ 
+  & & \\ 
+ been unemployed & $-$0.03 & $-$0.06$^{**}$ \\ 
+  & (0.03) & (0.03) \\ 
+  & & \\ 
+ income decile & $-$0.02$^{***}$ & $-$0.002 \\ 
+  & (0.01) & (0.01) \\ 
+  & & \\ 
+ populist-authoritarian & 0.03 & 0.03 \\ 
+  & (0.06) & (0.06) \\ 
+  & & \\ 
+ mainstream & $-$0.33$^{***}$ & $-$0.32$^{***}$ \\ 
+  & (0.04) & (0.04) \\ 
+  & & \\ 
+ populist & $-$0.21$^{***}$ & $-$0.36$^{***}$ \\ 
+  & (0.07) & (0.07) \\ 
+  & & \\ 
+ treat.no college & 0.20 & 0.06 \\ 
+  & (0.13) & (0.13) \\ 
+  & & \\ 
+ treat.vocational & 0.16 & $-$0.09 \\ 
+  & (0.14) & (0.14) \\ 
+  & & \\ 
+ treat.age & $-$0.06$^{***}$ & $-$0.01 \\ 
+  & (0.02) & (0.02) \\ 
+  & & \\ 
+ treat.left-right & $-$0.03$^{***}$ & $-$0.03$^{***}$ \\ 
+  & (0.01) & (0.01) \\ 
+  & & \\ 
+ treat.long run imp-exp ratio & 0.02$^{**}$ & $-$0.003 \\ 
+  & (0.01) & (0.01) \\ 
+  & & \\ 
+ treat.been unemployed & $-$0.02 & 0.01 \\ 
+  & (0.05) & (0.05) \\ 
+  & & \\ 
+ treat.income decile & 0.03$^{***}$ & 0.01 \\ 
+  & (0.01) & (0.01) \\ 
+  & & \\ 
+ treat.populist-authoritarian & $-$0.04 & 0.10 \\ 
+  & (0.10) & (0.10) \\ 
+  & & \\ 
+ treat.mainstream & 0.09 & 0.10 \\ 
+  & (0.06) & (0.06) \\ 
+  & & \\ 
+ treat.populist & $-$0.17 & 0.21$^{*}$ \\ 
+  & (0.11) & (0.12) \\ 
+  & & \\ 
+\textit{N} & 6,761 & 6,761 \\ 
+R$^{2}$ & 0.16 & 0.11 \\ 
+Adjusted R$^{2}$ & 0.15 & 0.11 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Notes:} & \multicolumn{2}{r}{$^{***}$Significant at the 1 percent level.} \\ 
+ & \multicolumn{2}{r}{$^{**}$Significant at the 5 percent level.} \\ 
+ & \multicolumn{2}{r}{$^{*}$Significant at the 10 percent level.} \\ 
+\end{tabular} 
+\end{table} 
+
+
+
+
+\newpage
+
+
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{plot_cco_ethnic_ches.png}
+\caption{Conditional contrast plot for the treatment effect of occupational exposure, conditional on the type of party a survey participant felt closest to. The x-axis describes which party the individual felt closest to. The y-axis describes, for each party type, how much occupational exposure affected a participant's preferences for ethnic restrictions over immigration on average.}
+\label{fig:ccoethnicches}
+\end{figure}
+
+
+
+
+\newpage
+
+
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{plot_cco_ethnic_leftright.png}
+\caption{Conditional contrast plot for the treatment effect of occupational exposure, conditional on the left-right ideology of a survey participant. The x-axis describes the left-right scale. The y-axis describes how much occupational exposure affected a participant's preferences for ethnic restrictions over immigration on average.}
+\label{fig:ccoethnicleftright}
+\end{figure}
+
+
+
+
+\newpage
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{plot_cco_econ_ches.png}
+\caption{Conditional contrast plot for the treatment effect of occupational exposure, conditional on the type of party a survey participant felt closest to. The x-axis describes which party the individual felt closest to. The y-axis describes, for each party type, how much occupational exposure affected a participant's preferences for economic restrictions over immigration on average.}
+\label{fig:ccoeconches}
+\end{figure}
+
+
+
+
+\newpage
+
+
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{plot_cco_econ_leftright.png}
+\caption{Conditional contrast plot for the treatment effect of occupational exposure, conditional on the left-right ideology of a survey participant. The x-axis describes the left-right scale. The y-axis describes how much occupational exposure affected a participant's preferences for economic restrictions over immigration on average.}
+\label{fig:ccoeconleftright}
+\end{figure}
+
+
+
+
+\newpage
+
+
+
+
+
+# References
+
+
+
+
+
+
+
+
+
